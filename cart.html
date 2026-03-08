@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - WineCellar</title>
+    <!-- Font Awesome cho icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red-wine: #8B1E3F;
+            --gold: #C6A43F;
+            --cream: #F9F5F0;
+            --dark-gray: #2C2C2C;
+            --light-gray: #F0F0F0;
+            --white: #FFFFFF;
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-gray);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background-color: var(--cream);
+            border-bottom: 2px solid var(--gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 28px;
+            color: var(--red-wine);
+            letter-spacing: 2px;
+        }
+
+        .hotline {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--red-wine);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        .hotline i {
+            font-size: 18px;
+        }
+
+        .promo-badge {
+            background-color: var(--gold);
+            color: var(--dark-gray);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .main-nav {
+            border-top: 1px solid rgba(139,30,63,0.2);
+            padding: 12px 0;
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-list a:hover,
+        .nav-list a.active {
+            color: var(--red-wine);
+        }
+
+        .nav-list a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-list a:hover::after,
+        .nav-list a.active::after {
+            width: 100%;
+        }
+
+        /* ===== CART EMPTY SECTION ===== */
+        .cart-section {
+            background: linear-gradient(135deg, #f8f4f0 0%, #fff 100%);
+            padding: 60px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-empty {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cart-icon-large {
+            font-size: 80px;
+            color: var(--red-wine);
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+
+        .empty-message {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--dark-gray);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--red-wine);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            border-color: var(--red-wine);
+            color: var(--red-wine);
+        }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title {
+            font-family: 'Merriweather', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--red-wine);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 16px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        /* ===== PROMO GRID ===== */
+        .promo-section {
+            padding: 60px 0;
+            background: var(--white);
+        }
+
+        .promo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .promo-item {
+            text-align: center;
+            padding: 32px 20px;
+            border-radius: 16px;
+            background: linear-gradient(145deg, #fefaf5, #fff);
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .promo-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .promo-item i {
+            font-size: 48px;
+            color: var(--red-wine);
+            margin-bottom: 16px;
+        }
+
+        .promo-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--red-wine);
+        }
+
+        .promo-item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .favorite-empty {
+            text-align: center;
+            padding: 30px 0 10px;
+            color: #999;
+            font-size: 15px;
+            border-top: 1px dashed #e0d6cc;
+            margin-top: 20px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 48px 0 24px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            opacity: 0.8;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .footer-links h3,
+        .footer-social h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--gold);
+            color: var(--dark-gray);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .promo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .promo-badge {
+                width: 100%;
+                justify-content: center;
+            }
+            .nav-list {
+                gap: 12px;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+            .promo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>WINECELLAR</h1>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                    <span class="promo-badge"><i class="fas fa-truck"></i> MIỄN PHÍ giao hàng đơn > 1 triệu</span>
+                    <span class="promo-badge"><i class="fas fa-gift"></i> ƯU ĐÃI đặc biệt</span>
+                    <div class="hotline">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>1900.6750</span>
+                    </div>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#">RƯỢU VANG</a></li>
+                    <li><a href="#">RƯỢU MẠNH</a></li>
+                    <li><a href="#">LY PHA LÊ</a></li>
+                    <li><a href="#">PHỤ KIỆN</a></li>
+                    <li><a href="#">QUÀ TẶNG</a></li>
+                    <li><a href="#">KIẾN THỨC</a></li>
+                    <li><a href="#" class="active">GIỎ HÀNG</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN: GIỎ HÀNG TRỐNG -->
+    <section class="cart-section">
+        <div class="container">
+            <div class="cart-empty">
+                <div class="cart-icon-large">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h2 class="empty-message">Giỏ hàng của bạn đang trống</h2>
+                <p style="color: #666; margin-bottom: 24px;">Hãy khám phá thế giới rượu vang của chúng tôi</p>
+                <a href="#" class="btn btn-primary">Tiếp tục mua hàng</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CÓ THỂ BẠN THÍCH -->
+    <section class="promo-section">
+        <div class="container">
+            <h2 class="section-title">Có thể bạn thích</h2>
+            <div class="promo-grid">
+                <div class="promo-item">
+                    <i class="fas fa-file-certificate"></i>
+                    <h3>CHỨNG NHẬN CO CQ</h3>
+                    <p>100% sản phẩm có chứng nhận CO CQ đầy đủ</p>
+                </div>
+                <div class="promo-item">
+                    <i class="fas fa-crown"></i>
+                    <h3>ĐẠI LÝ ĐỘC QUYỀN</h3>
+                    <p>Liên hệ 1900.6750 để được trao đổi chi tiết</p>
+                </div>
+                <div class="promo-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>GIAO HÀNG NHANH 24/7</h3>
+                    <p>Giao hàng toàn quốc với nhiều ưu đãi đặc biệt</p>
+                </div>
+                <div class="promo-item">
+                    <i class="fas fa-rotate-left"></i>
+                    <h3>ĐỔI TRẢ SẢN PHẨM</h3>
+                    <p>Đổi trả sản phẩm lỗi và phát hiện hàng giả</p>
+                </div>
+            </div>
+            <!-- Dòng thông báo yêu thích -->
+            <div class="favorite-empty">
+                <i class="far fa-heart" style="margin-right: 8px;"></i> Bạn chưa có sản phẩm yêu thích nào!
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>WINECELLAR</h2>
+                    <p>CÔNG TY TNHH HẦM RƯỢU VIỆT NAM</p>
+                    <p>Địa chỉ: Số 78 Phố Vũ Phạm Hàm, Phường Yên Hòa, Hà Nội</p>
+                    <p>Điện thoại: 094 669 8008</p>
+                </div>
+                <div class="footer-links">
+                    <h3>DANH MỤC</h3>
+                    <ul>
+                        <li><a href="#">Rượu vang Pháp</a></li>
+                        <li><a href="#">Rượu vang Ý</a></li>
+                        <li><a href="#">Rượu Whisky</a></li>
+                        <li><a href="#">Ly pha lê</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>KẾT NỐI</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-zalo"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Copyright 2026 © WINECELLAR.vn</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

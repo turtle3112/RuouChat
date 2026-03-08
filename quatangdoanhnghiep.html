@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quà tặng doanh nghiệp | WINECELLAR.vn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== TYPOGRAPHY & COLORS ===== */
+        :root {
+            --primary-red: #8B0000;
+            --dark-red: #5A0000;
+            --light-red: #A52A2A;
+            --gold: #D4AF37;
+            --light-gold: #F5E8AA;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #666;
+            --text-dark: #222;
+            --white: #FFFFFF;
+            --green: #2E8B57;
+            --light-bg: #FBF8EE;
+            --cream: #F2EFE2;
+            --border-color: #E8E8E8;
+            --text-light: #6C757D;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        /* ===== MAIN HEADER ===== */
+        .main-header {
+            margin-left: -80px;
+            background: var(--light-bg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: 77px;
+            width: 105%;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 77px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .main-nav {
+            flex: 1;
+            margin: 0 30px;
+            display: block !important;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 28px 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-red);
+        }
+
+        .nav-link.highlight-text {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        /* Dropdown Menus */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            padding: 25px;
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            min-width: 1200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        .has-dropdown:hover .dropdown-menu {
+            display: grid;
+        }
+
+        .dropdown-column h3 {
+            color: var(--text-dark);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-red);
+        }
+
+        .dropdown-column ul {
+            list-style: none;
+            margin-bottom: 20px;
+            padding: 0;
+        }
+
+        .dropdown-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .dropdown-column a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14.5px;
+            font-weight: 400;
+            display: block;
+            padding: 5px 0;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .dropdown-column a:hover {
+            color: var(--primary-red);
+            padding-left: 5px;
+        }
+
+        .dropdown-column a.highlight {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .dropdown-column .two-column {
+            column-count: 2;
+            column-gap: 20px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            background: var(--light-gray);
+            border-radius: 50px;
+            overflow: hidden;
+            padding: 8px 15px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 0 10px;
+            width: 180px;
+            font-size: 14px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+        }
+
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: var(--dark-gray);
+            cursor: pointer;
+        }
+
+        .icon-link {
+            color: var(--text-dark);
+            font-size: 18px;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .cart-icon .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary-red);
+            color: white;
+            font-size: 11px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== BANNER ===== */
+        .banner-wrapper {
+            margin-top: 80px;
+            width: 100%;
+        }
+
+        .banner-container {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            overflow: hidden;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== NỘI DUNG CHÍNH ===== */
+        .gift-content {
+            max-width: 1280px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .gift-intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .gift-intro h2 {
+            font-size: 32px;
+            color: var(--primary-red);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .gift-intro p {
+            font-size: 18px;
+            color: var(--text-dark);
+            max-width: 1300px;
+            margin: 0 auto 15px;
+            line-height: 1.8;
+        }
+
+        .gift-intro .highlight {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .gift-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding: 0 20px;
+        }
+
+        .gift-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--medium-gray);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .gift-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(139,0,0,0.1);
+            border-color: var(--primary-red);
+        }
+
+        .gift-image {
+            height: 220px;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-gray);
+            font-size: 14px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="%23aaa" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 60px;
+            background-color: #f0f0f0;
+        }
+
+        .gift-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gift-info {
+            padding: 15px 10px;
+            text-align: center;
+        }
+
+        .gift-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .gift-info p {
+            font-size: 14px;
+            color: var(--dark-gray);
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ===== SẢN PHẨM TẾT ===== */
+        .tet-products {
+            max-width: 1280px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: var(--primary-red);
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--medium-gray);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(139,0,0,0.1);
+            border-color: var(--primary-red);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px 15px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            line-height: 1.4;
+            min-height: 50px; /* để đồng đều */
+        }
+
+        .abv {
+            font-size: 13px;
+            color: var(--dark-gray);
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin: 8px 0;
+        }
+
+        .add-to-cart {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 12px 0;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: auto;
+            border: 2px solid var(--primary-red);
+        }
+
+        .add-to-cart:hover {
+            background: var(--dark-red);
+            transform: scale(1.02);
+        }
+
+        /* ===== NÚT XEM THÊM ===== */
+        .load-more-wrapper {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .load-more-btn {
+            background: white;
+            border: 2px solid var(--primary-red);
+            color: var(--primary-red);
+            padding: 12px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .load-more-btn:hover {
+            background: var(--primary-red);
+            color: white;
+        }
+        .load-more-btn i {
+            font-size: 14px;
+        }
+
+        /* Ẩn sản phẩm chưa hiển thị */
+        .hidden-product {
+            display: none;
+        }
+
+        
+
+        /* ===== SECTION TƯ VẤN ===== */
+        .consultant-section {
+            background: var(--light-bg);
+            padding: 60px 0;
+            margin-top: 40px;
+        }
+
+        .consultant-content {
+            display: grid;
+            grid-template-columns: 1fr; /* Một cột duy nhất */
+            justify-items: center;      /* Căn giữa theo chiều ngang */
+        }
+
+        .consultant-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--medium-gray);
+            max-width: 600px;            /* Giới hạn chiều rộng form */
+            width: 100%;                  /* Co dãn trên màn hình nhỏ */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .submit-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-red);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .consultant-section {
+                padding: 40px 0;
+            }
+            .consultant-form {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .banner-container {
+                height: 400px;
+            }
+            .gift-intro h2 {
+                font-size: 26px;
+            }
+            .gift-intro p {
+                font-size: 16px;
+            }
+            .section-title {
+                font-size: 24px;
+            }
+
+            .consultant-section {
+                padding: 40px 0;
+            }
+            .consultant-info,
+            .consultant-form {
+                padding: 25px;
+            }
+            .error-message {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .contact-details p {
+                font-size: 16px;
+            }
+        }
+
+        /* ===== THANH FLOATING (HIỆN KHI CUỘN LÊN) ===== */
+        .floating-promo {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            border-top: 3px solid #8B1E1E;
+            flex-wrap: wrap;
+        }
+        .floating-promo.show {
+            transform: translateY(0);
+        }
+        .floating-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: #8B1E1E;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
+            border: 1px solid #8B1E1E;
+        }
+        .floating-item i {
+            font-size: 18px;
+        }
+        .floating-item:hover {
+            background: #6b1717;
+            transform: scale(1.02);
+        }
+        .floating-item.outline {
+            background: white;
+            color: #8B1E1E;
+        }
+        .floating-item.outline:hover {
+            background: #8B1E1E;
+            color: white;
+        }
+        .main-footer {
+            margin-top: 20px;
+        }
+
+        /* ===== MODAL POPUP ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 900px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 25px;
+            top: 15px;
+            font-size: 35px;
+            font-weight: 300;
+            color: #888;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-red);
+        }
+
+        .modal-body {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .form-col {
+            flex: 1 1 300px;
+        }
+
+        .product-col {
+            flex: 1 1 250px;
+            background: var(--light-bg);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            border: 2px dashed var(--gold);
+            position: relative;
+        }
+
+        .product-col h4 {
+            font-size: 18px;
+            color: var(--text-dark);
+            margin: 15px 0 5px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin: 10px 0;
+        }
+
+        .special-tag {
+            background: var(--primary-red);
+            color: white;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .abv-tag {
+            background: var(--gold);
+            color: var(--text-dark);
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin: 5px 5px 0;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 160px;
+            background: #ddd;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="%23aaa" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 60px;
+            background-color: #f0f0f0;
+        }
+
+        .form-col h3 {
+            font-size: 24px;
+            color: var(--primary-red);
+            margin-bottom: 5px;
+        }
+
+        .form-col p {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--medium-gray);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .submit-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+            border: 2px solid var(--primary-red);
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+        }
+
+        #modalSuccessState {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        #modalSuccessState i {
+            font-size: 70px;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+
+        #modalSuccessState h3 {
+            font-size: 26px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        #modalSuccessState p {
+            color: var(--dark-gray);
+            margin-bottom: 25px;
+        }
+
+        .close-success-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: 2px solid var(--primary-red);
+        }
+
+        .close-success-btn:hover {
+            background: var(--dark-red);
+        }
+
+        @media (max-width: 700px) {
+            .modal-content {
+                margin: 10% auto;
+                padding: 20px;
+            }
+            .modal-body {
+                flex-direction: column;
+            }
+        }
+
+        .promo-actions {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0 30px;
+            flex-wrap: wrap;
+        }
+        .promo-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background-color: #f8f8f8;
+            border: 2px solid #8B1E1E;
+            border-radius: 60px;
+            color: #8B1E1E;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(139,30,30,0.1);
+        }
+        .promo-item i {
+            font-size: 22px;
+        }
+        .promo-item:hover {
+            background-color: #8B1E1E;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(139,30,30,0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="#">
+                        <img src="https://winecellar.vn/wp-content/uploads/2023/03/Logo_WineCellar-01-1.svg" alt="WINECELLAR.vn" width="180">
+                    </a>
+                </div>
+
+                <!-- Main Navigation -->
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Rượu Vang</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-column">
+                                    <h3>Theo loại rượu</h3>
+                                    <ul>
+                                        <li><a href="#">Rượu vang đỏ</a></li>
+                                        <li><a href="#">Rượu vang trắng</a></li>
+                                        <li><a href="#">Rượu vang hồng</a></li>
+                                        <li><a href="#">Rượu vang ngọt</a></li>
+                                        <li><a href="#">Rượu vang sủi</a></li>
+                                        <li><a href="#">Rượu vang Moscato</a></li>
+                                        <li><a href="#">Rượu vang 18 độ</a></li>
+                                        <li><a href="#">Rượu vang 0 độ</a></li>
+                                        <li><a href="#">Rượu vang bịch</a></li>
+                                        <li><a href="#" class="highlight">Rượu vang cao cấp</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h3>Theo quốc gia</h3>
+                                    <ul>
+                                        <li><a href="#">Rượu vang Ý</a></li>
+                                        <li><a href="#">Rượu vang Chile</a></li>
+                                        <li><a href="#">Rượu vang Pháp</a></li>
+                                        <li><a href="#">Rượu vang Tây Ban Nha</a></li>
+                                        <li><a href="#">Rượu vang Úc</a></li>
+                                        <li><a href="#">Rượu vang Bồ Đào Nha</a></li>
+                                        <li><a href="#">Rượu vang Hungary</a></li>
+                                        <li><a href="#">Rượu vang Mỹ</a></li>
+                                        <li><a href="#">Rượu vang Argentina</a></li>
+                                        <li><a href="#">Rượu vang New Zealand</a></li>
+                                        <li><a href="#">Rượu vang Nam Phi</a></li>
+                                        <li><a href="#">Rượu vang Áo</a></li>
+                                        <li><a href="#">Rượu vang Canada</a></li>
+                                        <li><a href="#" class="highlight">Tất cả thương hiệu rượu vang</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h3>Theo vùng làm vang</h3>
+                                    <ul>
+                                        <li><a href="#">Bordeaux (Pháp)</a></li>
+                                        <li><a href="#">Languedoc (Pháp)</a></li>
+                                        <li><a href="#">Provence (Pháp)</a></li>
+                                        <li><a href="#">Puglia (Ý)</a></li>
+                                        <li><a href="#">Piedmont (Ý)</a></li>
+                                        <li><a href="#">Tuscany (Ý)</a></li>
+                                        <li><a href="#">Aconcagua Valley (Chile)</a></li>
+                                        <li><a href="#">McLaren Vale (Úc)</a></li>
+                                        <li><a href="#">Central Valley (Chile)</a></li>
+                                    </ul>
+                                    <a href="#" class="highlight">Tất cả vùng làm vang</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h3>Theo giống nho</h3>
+                                    <ul>
+                                        <li><a href="#">Cabernet Sauvignon</a></li>
+                                        <li><a href="#">Cabernet Franc</a></li>
+                                        <li><a href="#">Negroamaro</a></li>
+                                        <li><a href="#">Merlot</a></li>
+                                        <li><a href="#">Primitivo</a></li>
+                                        <li><a href="#">Syrah (Shiraz)</a></li>
+                                        <li><a href="#">Chardonnay</a></li>
+                                        <li><a href="#">Sauvignon Blanc</a></li>
+                                        <li><a href="#">Riesling</a></li>
+                                    </ul>
+                                    <a href="#" class="highlight">Tất cả giống nho</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Rượu Champagne</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Rượu mạnh</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-column">
+                                    <h3>Các loại rượu mạnh</h3>
+                                    <ul>
+                                        <li><a href="#">Rượu Whisky</a></li>
+                                        <li><a href="#">Blended Whisky</a></li>
+                                        <li><a href="#">Single Malt Whisky</a></li>
+                                        <li><a href="#">Rượu Vodka</a></li>
+                                        <li><a href="#">Rượu Brandy</a></li>
+                                        <li><a href="#">Rượu Cognac</a></li>
+                                        <li><a href="#">Rượu Armagnac</a></li>
+                                        <li><a href="#">Rượu Rum</a></li>
+                                        <li><a href="#">Rượu Gin</a></li>
+                                        <li><a href="#">Rượu Liqueur</a></li>
+                                        <li><a href="#">Rượu Tequila</a></li>
+                                        <li><a href="#">Rượu XO</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h3>Thương hiệu nổi tiếng</h3>
+                                    <ul class="two-column">
+                                        <li><a href="#">Rượu Chivas</a></li>
+                                        <li><a href="#">Rượu Johnnie Walker</a></li>
+                                        <li><a href="#">Rượu Ballantines</a></li>
+                                        <li><a href="#">Rượu Hibiki</a></li>
+                                        <li><a href="#">Rượu Macallan</a></li>
+                                        <li><a href="#">Rượu Mortlach</a></li>
+                                        <li><a href="#">Rượu Glenfiddich</a></li>
+                                        <li><a href="#">Rượu The Glenlivet</a></li>
+                                        <li><a href="#">Rượu Singleton</a></li>
+                                        <li><a href="#">Rượu Glen Moray</a></li>
+                                        <li><a href="#">Rượu Bacardi</a></li>
+                                        <li><a href="#">Rượu Brugal</a></li>
+                                        <li><a href="#">Rượu Cachaca</a></li>
+                                        <li><a href="#">London Dry Gin</a></li>
+                                        <li><a href="#">Rượu Bols</a></li>
+                                        <li><a href="#">Rượu Bardinet</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">🧧 Rượu Tết</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">🎁 Quà Tết 2026</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Phụ Kiện Rượu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Kiến thức</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Liên hệ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link highlight-text">⚡Khuyến mãi</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <div class="banner-wrapper">
+        <div class="banner-container">
+            <img src="2.jpg" alt="Quà tặng doanh nghiệp" class="banner-img">
+        </div>
+    </div>
+
+    <!-- Nội dung chính: Quà tặng doanh nghiệp -->
+    <div class="gift-content">
+        <div>
+            <img src="3.jpg" style="width: 1520px; height: 850px; margin-left: -140px;">
+
+            <div class="gift-intro" style="margin-top: -800px;">
+                <h2>QUÀ TẶNG DOANH NGHIỆP - WINECELLAR.vn</h2>
+                <p style="white-space: nowrap; max-width: 100%; text-align: center;">WINECELLAR.vn cung cấp giải pháp <strong class="highlight">Quà Tặng Doanh Nghiệp, Quà Tặng Trung Thu, Quà Tặng Tết</strong> ý nghĩa cho đối tác, khách hàng, nhân viên.</p>
+                <p style="white-space: nowrap; max-width: 100%; text-align: center;">Dịch vụ in logo Doanh Nghiệp lên hộp quà theo yêu cầu. Chính sách chiết khấu tốt, miễn phí giao hàng nội thành và linh hoạt giao hàng trên toàn quốc.</p>
+            </div>
+
+        <div class="gift-grid">
+            <!-- Danh mục 1 -->
+            <a href="#" class="gift-card">
+                <div class="gift-image">
+                    <img src="4.jpg" style="height: 220px; width: 400px;">
+                </div>
+                <div class="gift-info">
+                    <h3>Hộp quà tặng doanh nghiệp 1 chai Rượu</h3>
+                </div>
+            </a>
+            <!-- Danh mục 2 -->
+            <a href="#" class="gift-card">
+                <div class="gift-image"></div>
+                <div class="gift-info">
+                    <h3>Hộp quà tặng doanh nghiệp 2 chai Rượu</h3>
+                </div>
+            </a>
+            <!-- Danh mục 3 -->
+            <a href="#" class="gift-card">
+                <div class="gift-image"></div>
+                <div class="gift-info">
+                    <h3>Hộp quà Tết Rượu vang - Trà - Bánh - Hạt</h3>
+                </div>
+            </a>
+            <!-- Danh mục 4 -->
+            <a href="#" class="gift-card">
+                <div class="gift-image"></div>
+                <div class="gift-info">
+                    <h3>Hộp quà tặng giá rẻ</h3>
+                </div>
+            </a>
+            <!-- Danh mục 5 -->
+            <a href="#" class="gift-card">
+                <div class="gift-image"></div>
+                <div class="gift-info">
+                    <h3>Hộp quà tặng không cồn</h3>
+                </div>
+            </a>
+            <!-- Danh mục 6 -->
+            <a href="#" class="gift-card">
+                <div class="gift-image"></div>
+                <div class="gift-info">
+                    <h3>Hộp quà tặng whisky</h3>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ===== SẢN PHẨM HỘP QUÀ TẾT PHÁT TÀI (KẾT HỢP 4 MÓN) ===== -->
+    <div class="tet-products">
+        <h2 class="section-title">HỘP QUÀ TẶNG TẾT PHÁT TÀI (KẾT HỢP 4 MÓN)</h2>
+        <div class="product-grid" id="productGrid">
+            <!-- 10 sản phẩm hiển thị ban đầu -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài Tavernello Montepulciano d’Abruzzo">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Tavernello Montepulciano d’Abruzzo</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">707.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài Château Lamothe Castera 2023">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Château Lamothe Castera 2023</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">852.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài Tavernello Organico Sangiovese Rubicone">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Tavernello Organico Sangiovese Rubicone</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">743.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài – Vang Pháp Premius La Réserve Bordeaux Supérieur 2019">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài – Vang Pháp Premius La Réserve Bordeaux Supérieur 2019</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">913.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài Tavernello Organico Syrah Terre Siciliane">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Tavernello Organico Syrah Terre Siciliane</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">743.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài La Carminaia Vino Rosso d’Italia">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài La Carminaia Vino Rosso d’Italia</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">1.058.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài Tavernello Organico Rosso Terre Siciliane">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Tavernello Organico Rosso Terre Siciliane</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">743.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài Château Pey La Tour 2021">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Château Pey La Tour 2021</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">1.058.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài Marquis de Beylot 2022">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Marquis de Beylot 2022</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">816.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài – Vang Pháp Dourthe N°1 Bordeaux Rouge">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài – Vang Pháp Dourthe N°1 Bordeaux Rouge</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">1.082.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+
+            <!-- 14 sản phẩm ẩn (từ 11 đến 24) -->
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 11">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Château Beychevelle 2020</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">1.250.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 12">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Domaine de la Vougeraie 2019</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">1.390.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 13">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Château Lynch Bages 2018</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">2.100.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 14">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Penfolds Bin 389 2020</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">2.450.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 15">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Almaviva 2017</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">3.200.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 16">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Sassicaia 2018</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">4.500.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 17">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Opus One 2019</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">5.800.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 18">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Château Margaux 2016</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">6.500.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 19">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Dom Pérignon 2012</h3>
+                    <p class="abv">12% ABV</p>
+                    <p class="price">4.200.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 20">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Krug Grande Cuvée</h3>
+                    <p class="abv">12% ABV</p>
+                    <p class="price">5.500.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 21">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Hennessy XO</h3>
+                    <p class="abv">40% ABV</p>
+                    <p class="price">3.800.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 22">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Johnnie Walker Blue Label</h3>
+                    <p class="abv">40% ABV</p>
+                    <p class="price">4.500.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 23">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Macallan 18 Sherry Oak</h3>
+                    <p class="abv">43% ABV</p>
+                    <p class="price">7.200.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Tài 24">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Tài Chivas Regal 25</h3>
+                    <p class="abv">40% ABV</p>
+                    <p class="price">5.600.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nút Xem thêm -->
+        <div class="load-more-wrapper">
+            <button class="load-more-btn" id="loadMoreBtn">
+                <span>XEM THÊM (10 / 24)</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== SẢN PHẨM HỘP QUÀ TẾT PHÁT LỘC (KẾT HỢP 5 MÔN) ===== -->
+    <div class="tet-products">
+        <h2 class="section-title">HỘP QUÀ TẶNG TẾT PHÁT LỘC (KẾT HỢP 5 MÔN)</h2>
+        <div class="product-grid" id="productGrid2">
+            <!-- 10 sản phẩm hiển thị ban đầu -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc Tavernello Montepulciano d’Abruzzo">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Tavernello Montepulciano d’Abruzzo</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">707.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc Château Lamothe Castera 2023">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Château Lamothe Castera 2023</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">852.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc Tavernello Organico Sangiovese Rubicone">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Tavernello Organico Sangiovese Rubicone</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">743.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc – Vang Pháp Premius La Réserve Bordeaux Supérieur 2019">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc – Vang Pháp Premius La Réserve Bordeaux Supérieur 2019</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">913.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc Tavernello Organico Syrah Terre Siciliane">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Tavernello Organico Syrah Terre Siciliane</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">743.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc La Carminaia Vino Rosso d’Italia">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc La Carminaia Vino Rosso d’Italia</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">1.058.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc Tavernello Organico Rosso Terre Siciliane">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Tavernello Organico Rosso Terre Siciliane</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">743.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc Château Pey La Tour 2021">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Château Pey La Tour 2021</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">1.058.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc Marquis de Beylot 2022">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Marquis de Beylot 2022</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">816.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc – Vang Pháp Dourthe N°1 Bordeaux Rouge">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc – Vang Pháp Dourthe N°1 Bordeaux Rouge</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">1.082.600 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+
+            <!-- 14 sản phẩm ẩn (từ 11 đến 24) -->
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 11">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Château Beychevelle 2020</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">1.250.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 12">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Domaine de la Vougeraie 2019</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">1.390.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 13">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Château Lynch Bages 2018</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">2.100.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 14">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Penfolds Bin 389 2020</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">2.450.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 15">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Almaviva 2017</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">3.200.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 16">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Sassicaia 2018</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">4.500.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 17">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Opus One 2019</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">5.800.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 18">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Château Margaux 2016</h3>
+                    <p class="abv">1% ABV*</p>
+                    <p class="price">6.500.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 19">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Dom Pérignon 2012</h3>
+                    <p class="abv">12% ABV</p>
+                    <p class="price">4.200.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 20">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Krug Grande Cuvée</h3>
+                    <p class="abv">12% ABV</p>
+                    <p class="price">5.500.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 21">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Hennessy XO</h3>
+                    <p class="abv">40% ABV</p>
+                    <p class="price">3.800.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 22">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Johnnie Walker Blue Label</h3>
+                    <p class="abv">40% ABV</p>
+                    <p class="price">4.500.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 23">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Macallan 18 Sherry Oak</h3>
+                    <p class="abv">43% ABV</p>
+                    <p class="price">7.200.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+            <div class="product-card hidden-product">
+                <div class="product-image">
+                    <img src="5.jpg" alt="Hộp Quà Tặng Phát Lộc 24">
+                </div>
+                <div class="product-info">
+                    <h3>Hộp Quà Tặng Phát Lộc Chivas Regal 25</h3>
+                    <p class="abv">40% ABV</p>
+                    <p class="price">5.600.000 ₫</p>
+                    <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nút Xem thêm -->
+        <div class="load-more-wrapper">
+            <button class="load-more-btn" id="loadMoreBtn2">
+                <span>XEM THÊM (10 / 24)</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="banner2">
+        <img src="6.jpg" style="width: 1520px; height: 700px; display: block; margin-left: -140px;">
+    </div>
+    <div class="banner3">
+        <img src="8.jpg" style="width: 1520px; height: 700px; display: block; margin-left: -140px;">
+    </div>
+
+    <!-- ===== SECTION NHẬN TƯ VẤN ===== -->
+    <div class="consultant-section">
+        <div class="container">
+            <h2 class="section-title">NHẬN TƯ VẤN QUÀ TẶNG DOANH NGHIỆP</h2>
+            <div class="consultant-content">
+                <!-- Cột form liên hệ -->
+                <div class="consultant-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Họ và tên" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Số điện thoại">
+                        </div>
+                        <button type="submit" class="submit-btn">GỬI YÊU CẦU</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thêm class open-offer-modal cho các nút nhận ưu đãi -->
+    <div class="promo-actions">
+        <a href="#" class="promo-item"><i class="fas fa-map-marker-alt"></i> TÌM CỬA HÀNG</a>
+        <a href="#" class="promo-item open-offer-modal"><i class="fas fa-gift"></i> NHẬN ƯU ĐÃI</a>
+        <a href="#" class="promo-item"><i class="fas fa-briefcase"></i> QUÀ TẶNG DOANH NGHIỆP</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <div class="footer-section">
+                <h4><i class="fas fa-store"></i> WINECELLAR.VN</h4>
+                <p>Địa chỉ: 123 Nguyễn Văn Linh, Quận 7, TP.HCM</p>
+                <p>Hotline: <strong>0909 123 456</strong></p>
+                <p>Email: info@winecellar.vn</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-list"></i> Danh Mục</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Đỏ</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Trắng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Pháp</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Ý</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Chile</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Tây Ban Nha</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-user-shield"></i> Chính Sách</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách bảo mật</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách vận chuyển</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách đổi trả</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Điều khoản sử dụng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Hướng dẫn mua hàng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Câu hỏi thường gặp</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-envelope"></i> Đăng Ký Nhận Tin</h4>
+                <p>Nhận thông tin khuyến mãi và sản phẩm mới từ WINECELLAR.vn</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Email của bạn">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fas fa-credit-card"></i>
+                    <i class="fas fa-qrcode"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 WINECELLAR.vn - Chuyên Rượu Vang Nhập Khẩu Chính Hãng. All rights reserved.</p>
+            <p>Giấy phép kinh doanh số: 123456789 do Sở KH&amp;ĐT TP.HCM cấp ngày 01/01/2020</p>
+        </div>
+    </footer>
+
+    <!-- ===== THANH FLOATING (HIỆN KHI CUỘN LÊN) ===== -->
+    <div class="floating-promo" id="floatingPromo">
+        <a href="#" class="floating-item"><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a>
+        <a href="#" class="floating-item open-offer-modal"><i class="fas fa-gift"></i> Nhận ưu đãi</a>
+        <a href="#" class="floating-item"><i class="fas fa-briefcase"></i> Quà doanh nghiệp</a>
+    </div>
+
+    <!-- ===== MODAL POPUP ĐĂNG KÝ ƯU ĐÃI ===== -->
+    <div id="offerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <!-- Cột form -->
+                <div class="form-col" id="modalFormState">
+                    <h3>Vui lòng để lại thông tin của bạn.</h3>
+                    <p>WINECELLAR.vn sẽ gửi ưu đãi cho quý khách</p>
+                    <form id="offerForm">
+                        <div class="form-group">
+                            <label>Họ và Tên (bắt buộc)</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại (bắt buộc)</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <button type="submit" class="submit-btn">NHẬN ƯU ĐÃI</button>
+                    </form>
+                </div>
+                <!-- Cột sản phẩm -->
+                <!-- <div class="product-col">
+                    <div class="product-image"></div>
+                    <h4>Rượu vang P Médoc 2020</h4>
+                    <p>Dòng rượu vang hương vị thơm mạnh</p>
+                    <div class="product-price">726.000 đ</div>
+                    <span class="special-tag">GIÁ ĐẶC BIỆT</span>
+                    <div>
+                        <span class="abv-tag">1% ABV*</span>
+                        <span class="abv-tag">1% ABV*</span>
+                    </div>
+                </div> -->
+                <!-- Trạng thái thành công (ẩn ban đầu) -->
+                <div id="modalSuccessState" style="display: none; width: 100%;">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Đăng ký được gửi đi thành công</h3>
+                    <p>Cảm ơn bạn đã quan tâm! Chúng tôi sẽ liên hệ sớm nhất.</p>
+                    <button class="close-success-btn">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Script xử lý dropdown, xem thêm và form tư vấn -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Xử lý dropdown menu
+            const dropdowns = document.querySelectorAll('.has-dropdown');
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('mouseenter', function() {
+                    const menu = this.querySelector('.dropdown-menu');
+                    if (menu) menu.style.display = 'grid';
+                });
+                dropdown.addEventListener('mouseleave', function() {
+                    const menu = this.querySelector('.dropdown-menu');
+                    if (menu) menu.style.display = 'none';
+                });
+            });
+
+            // Xử lý nút Xem thêm cho grid 1 (Phát Tài)
+            const loadMoreBtn1 = document.getElementById('loadMoreBtn');
+            const grid1 = document.getElementById('productGrid');
+            if (loadMoreBtn1 && grid1) {
+                loadMoreBtn1.addEventListener('click', function() {
+                    const hiddenProducts = grid1.querySelectorAll('.hidden-product');
+                    hiddenProducts.forEach(product => product.classList.remove('hidden-product'));
+                    this.style.display = 'none';
+                });
+            }
+
+            // Xử lý nút Xem thêm cho grid 2 (Phát Lộc)
+            const loadMoreBtn2 = document.getElementById('loadMoreBtn2');
+            const grid2 = document.getElementById('productGrid2');
+            if (loadMoreBtn2 && grid2) {
+                loadMoreBtn2.addEventListener('click', function() {
+                    const hiddenProducts = grid2.querySelectorAll('.hidden-product');
+                    hiddenProducts.forEach(product => product.classList.remove('hidden-product'));
+                    this.style.display = 'none';
+                });
+            }
+
+            // Xử lý form NHẬN TƯ VẤN
+            const consultantForm = document.querySelector('.consultant-section form');
+            if (consultantForm) {
+                consultantForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); // Ngăn gửi form đi
+                    alert('Đã gửi thông tin thành công! Chúng tôi sẽ liên hệ với bạn qua email.');
+                    this.reset(); // Xóa dữ liệu trong form
+                });
+            }
+
+            // ===== HIỆU ỨNG HIỆN/ẨN THANH FLOATING KHI CUỘN =====
+            let lastScrollTop = 0;
+            const floatingPromo = document.getElementById('floatingPromo');
+            
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop) {
+                    floatingPromo.classList.remove('show');
+                } else {
+                    floatingPromo.classList.add('show');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+
+            setTimeout(() => {
+                if (window.scrollY > 100) {
+                    floatingPromo.classList.add('show');
+                }
+            }, 500);
+
+            // ===== XỬ LÝ MODAL ĐĂNG KÝ ƯU ĐÃI =====
+            const modal = document.getElementById('offerModal');
+            const openBtns = document.querySelectorAll('.open-offer-modal');
+            const closeBtn = document.querySelector('.close-modal');
+            const formState = document.getElementById('modalFormState');
+            const successState = document.getElementById('modalSuccessState');
+            const form = document.getElementById('offerForm');
+            const closeSuccessBtn = document.querySelector('.close-success-btn');
+
+            // Mở modal khi click vào nút "Nhận ưu đãi"
+            openBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Reset về trạng thái form
+                    formState.style.display = 'block';
+                    successState.style.display = 'none';
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden'; // Chặn cuộn nền
+                });
+            });
+
+            // Đóng modal
+            function closeModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                // Reset form
+                form.reset();
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            window.addEventListener('click', function(e) {
+                if (e.target == modal) {
+                    closeModal();
+                }
+            });
+
+            // Xử lý submit form
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+
+                if (name === '' || phone === '') {
+                    alert('Vui lòng điền đầy đủ họ tên và số điện thoại.');
+                    return;
+                }
+
+                // Ẩn form, hiện thông báo thành công
+                formState.style.display = 'none';
+                successState.style.display = 'block';
+            });
+
+            // Nút đóng trong success state
+            closeSuccessBtn.addEventListener('click', closeModal);
+        });
+    </script>
+</body>
+</html>

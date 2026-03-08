@@ -893,6 +893,17 @@ h1, h2, h3, h4 {
     color: white;
     padding-top: 50px;
     margin-top: 50px;
+    /* make sure the footer stretches full width */
+    width: 100%;
+    left: 0;
+    right: 0;
+}
+
+/* when container is used inside the footer, override its max-width
+   so the section can expand completely across the viewport */
+.main-footer .container {
+    max-width: none;
+    padding: 0 20px; /* keep side padding if desired */
 }
 
 .footer-container {

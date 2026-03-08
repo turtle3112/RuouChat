@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm cửa hàng | WINECELLAR.vn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== TYPOGRAPHY & COLORS ===== */
+        :root {
+            --primary-red: #8B0000;
+            --dark-red: #5A0000;
+            --light-red: #A52A2A;
+            --gold: #D4AF37;
+            --light-gold: #F5E8AA;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #666;
+            --text-dark: #222;
+            --white: #FFFFFF;
+            --green: #2E8B57;
+            --light-bg: #FBF8EE;
+            --cream: #F2EFE2;
+            --border-color: #E8E8E8;
+            --text-light: #6C757D;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        /* ===== MAIN HEADER ===== */
+        .main-header {
+            margin-left: -80px;
+            background: var(--light-bg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: 77px;
+            width: 105%;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 77px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .main-nav {
+            flex: 1;
+            margin: 0 30px;
+            display: block !important;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 28px 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-red);
+        }
+
+        .nav-link.highlight-text {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        /* Dropdown Menus */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            padding: 25px;
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            min-width: 1200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        .has-dropdown:hover .dropdown-menu {
+            display: grid;
+        }
+
+        .dropdown-column h3 {
+            color: var(--text-dark);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-red);
+        }
+
+        .dropdown-column ul {
+            list-style: none;
+            margin-bottom: 20px;
+            padding: 0;
+        }
+
+        .dropdown-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .dropdown-column a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14.5px;
+            font-weight: 400;
+            display: block;
+            padding: 5px 0;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .dropdown-column a:hover {
+            color: var(--primary-red);
+            padding-left: 5px;
+        }
+
+        .dropdown-column a.highlight {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .dropdown-column .two-column {
+            column-count: 2;
+            column-gap: 20px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            background: var(--light-gray);
+            border-radius: 50px;
+            overflow: hidden;
+            padding: 8px 15px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 0 10px;
+            width: 180px;
+            font-size: 14px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+        }
+
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: var(--dark-gray);
+            cursor: pointer;
+        }
+
+        .icon-link {
+            color: var(--text-dark);
+            font-size: 18px;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .cart-icon .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary-red);
+            color: white;
+            font-size: 11px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== BANNER NHỎ GỌN ===== */
+        .banner-wrapper {
+            margin-top: 80px; /* Tránh menu fixed */
+            width: 100%;
+        }
+
+        .banner-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .banner-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+            width: 100%;
+            padding: 0 20px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+        }
+
+        .banner-text h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .banner-text h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        .banner-hours {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            background: rgba(139, 0, 0, 0.65);
+            padding: 8px 20px;
+            border-radius: 40px;
+            display: inline-flex;
+            margin: 0 auto;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Responsive banner */
+        @media (max-width: 768px) {
+            .banner-container {
+                height: 180px;
+            }
+            .banner-text h1 {
+                font-size: 20px;
+            }
+            .banner-text h2 {
+                font-size: 18px;
+            }
+            .banner-hours {
+                flex-direction: column;
+                gap: 3px;
+                font-size: 14px;
+                padding: 6px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-container {
+                height: 160px;
+            }
+            .banner-text h1 {
+                font-size: 16px;
+            }
+            .banner-text h2 {
+                font-size: 14px;
+            }
+        }
+
+        /* ===== DANH SÁCH CỬA HÀNG ===== */
+        .store-content {
+            max-width: 1280px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .store-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--medium-gray);
+        }
+
+        .store-card h3 {
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            font-size: 20px;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 10px;
+        }
+
+        .store-address {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .store-address i {
+            color: var(--primary-red);
+            width: 20px;
+            margin-top: 3px;
+        }
+
+        .store-address span {
+            flex: 1;
+        }
+
+        .store-phone {
+            display: flex;
+            gap: 10px;
+            color: var(--dark-gray);
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        /* ===== PHẦN GIỚI THIỆU (THÊM MỚI) ===== */
+        .intro-section {
+            max-width: 1280px;
+            margin: 40px auto;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .intro-section h2 {
+            font-size: 28px;
+            color: var(--primary-red);
+            margin-bottom: 25px;
+            font-weight: 700;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        .intro-section p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+
+        .intro-section ul {
+            margin: 20px 0 30px 30px;
+            list-style-type: disc;
+        }
+
+        .intro-section li {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .intro-section li strong {
+            color: var(--primary-red);
+        }
+
+        .intro-section .city-list {
+            background: var(--light-bg);
+            padding: 20px 25px;
+            border-radius: 16px;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+            color: var(--text-dark);
+            border-left: 5px solid var(--primary-red);
+        }
+
+        .intro-section .city-list i {
+            color: var(--primary-red);
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .intro-section h2 {
+                font-size: 24px;
+            }
+            .intro-section ul {
+                margin-left: 20px;
+            }
+        }
+
+        .promo-actions {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0 30px;
+            flex-wrap: wrap;
+        }
+        .promo-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background-color: #f8f8f8;
+            border: 2px solid #8B1E1E;
+            border-radius: 60px;
+            color: #8B1E1E;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(139,30,30,0.1);
+        }
+        .promo-item i {
+            font-size: 22px;
+        }
+        .promo-item:hover {
+            background-color: #8B1E1E;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(139,30,30,0.3);
+        }
+
+        /* ===== THANH FLOATING (HIỆN KHI CUỘN LÊN) ===== */
+        .floating-promo {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            border-top: 3px solid #8B1E1E;
+            flex-wrap: wrap;
+        }
+        .floating-promo.show {
+            transform: translateY(0);
+        }
+        .floating-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: #8B1E1E;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
+            border: 1px solid #8B1E1E;
+        }
+        .floating-item i {
+            font-size: 18px;
+        }
+        .floating-item:hover {
+            background: #6b1717;
+            transform: scale(1.02);
+        }
+        .floating-item.outline {
+            background: white;
+            color: #8B1E1E;
+        }
+        .floating-item.outline:hover {
+            background: #8B1E1E;
+            color: white;
+        }
+        .main-footer {
+            margin-top: 20px;
+        }
+
+        /* ===== MODAL POPUP ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 900px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 25px;
+            top: 15px;
+            font-size: 35px;
+            font-weight: 300;
+            color: #888;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-red);
+        }
+
+        .modal-body {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .form-col {
+            flex: 1 1 300px;
+        }
+
+        .product-col {
+            flex: 1 1 250px;
+            background: var(--light-bg);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            border: 2px dashed var(--gold);
+            position: relative;
+        }
+
+        .product-col h4 {
+            font-size: 18px;
+            color: var(--text-dark);
+            margin: 15px 0 5px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin: 10px 0;
+        }
+
+        .special-tag {
+            background: var(--primary-red);
+            color: white;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .abv-tag {
+            background: var(--gold);
+            color: var(--text-dark);
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin: 5px 5px 0;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 160px;
+            background: #ddd;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="%23aaa" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 60px;
+            background-color: #f0f0f0;
+        }
+
+        .form-col h3 {
+            font-size: 24px;
+            color: var(--primary-red);
+            margin-bottom: 5px;
+        }
+
+        .form-col p {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--medium-gray);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .submit-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+            border: 2px solid var(--primary-red);
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+        }
+
+        #modalSuccessState {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        #modalSuccessState i {
+            font-size: 70px;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+
+        #modalSuccessState h3 {
+            font-size: 26px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        #modalSuccessState p {
+            color: var(--dark-gray);
+            margin-bottom: 25px;
+        }
+
+        .close-success-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: 2px solid var(--primary-red);
+        }
+
+        .close-success-btn:hover {
+            background: var(--dark-red);
+        }
+
+        @media (max-width: 700px) {
+            .modal-content {
+                margin: 10% auto;
+                padding: 20px;
+            }
+            .modal-body {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation (from index.html) -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="#">
+                        <img src="https://winecellar.vn/wp-content/uploads/2023/03/Logo_WineCellar-01-1.svg" alt="WINECELLAR.vn" width="180">
+                    </a>
+                </div>
+
+                <!-- Main Navigation -->
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Rượu Vang</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-column">
+                                    <h3>Theo loại rượu</h3>
+                                    <ul>
+                                        <li><a href="#">Rượu vang đỏ</a></li>
+                                        <li><a href="#">Rượu vang trắng</a></li>
+                                        <li><a href="#">Rượu vang hồng</a></li>
+                                        <li><a href="#">Rượu vang ngọt</a></li>
+                                        <li><a href="#">Rượu vang sủi</a></li>
+                                        <li><a href="#">Rượu vang Moscato</a></li>
+                                        <li><a href="#">Rượu vang 18 độ</a></li>
+                                        <li><a href="#">Rượu vang 0 độ</a></li>
+                                        <li><a href="#">Rượu vang bịch</a></li>
+                                        <li><a href="#" class="highlight">Rượu vang cao cấp</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h3>Theo quốc gia</h3>
+                                    <ul>
+                                        <li><a href="#">Rượu vang Ý</a></li>
+                                        <li><a href="#">Rượu vang Chile</a></li>
+                                        <li><a href="#">Rượu vang Pháp</a></li>
+                                        <li><a href="#">Rượu vang Tây Ban Nha</a></li>
+                                        <li><a href="#">Rượu vang Úc</a></li>
+                                        <li><a href="#">Rượu vang Bồ Đào Nha</a></li>
+                                        <li><a href="#">Rượu vang Hungary</a></li>
+                                        <li><a href="#">Rượu vang Mỹ</a></li>
+                                        <li><a href="#">Rượu vang Argentina</a></li>
+                                        <li><a href="#">Rượu vang New Zealand</a></li>
+                                        <li><a href="#">Rượu vang Nam Phi</a></li>
+                                        <li><a href="#">Rượu vang Áo</a></li>
+                                        <li><a href="#">Rượu vang Canada</a></li>
+                                        <li><a href="#" class="highlight">Tất cả thương hiệu rượu vang</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h3>Theo vùng làm vang</h3>
+                                    <ul>
+                                        <li><a href="#">Bordeaux (Pháp)</a></li>
+                                        <li><a href="#">Languedoc (Pháp)</a></li>
+                                        <li><a href="#">Provence (Pháp)</a></li>
+                                        <li><a href="#">Puglia (Ý)</a></li>
+                                        <li><a href="#">Piedmont (Ý)</a></li>
+                                        <li><a href="#">Tuscany (Ý)</a></li>
+                                        <li><a href="#">Aconcagua Valley (Chile)</a></li>
+                                        <li><a href="#">McLaren Vale (Úc)</a></li>
+                                        <li><a href="#">Central Valley (Chile)</a></li>
+                                    </ul>
+                                    <a href="#" class="highlight">Tất cả vùng làm vang</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h3>Theo giống nho</h3>
+                                    <ul>
+                                        <li><a href="#">Cabernet Sauvignon</a></li>
+                                        <li><a href="#">Cabernet Franc</a></li>
+                                        <li><a href="#">Negroamaro</a></li>
+                                        <li><a href="#">Merlot</a></li>
+                                        <li><a href="#">Primitivo</a></li>
+                                        <li><a href="#">Syrah (Shiraz)</a></li>
+                                        <li><a href="#">Chardonnay</a></li>
+                                        <li><a href="#">Sauvignon Blanc</a></li>
+                                        <li><a href="#">Riesling</a></li>
+                                    </ul>
+                                    <a href="#" class="highlight">Tất cả giống nho</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Rượu Champagne</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Rượu mạnh</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-column">
+                                    <h3>Các loại rượu mạnh</h3>
+                                    <ul>
+                                        <li><a href="#">Rượu Whisky</a></li>
+                                        <li><a href="#">Blended Whisky</a></li>
+                                        <li><a href="#">Single Malt Whisky</a></li>
+                                        <li><a href="#">Rượu Vodka</a></li>
+                                        <li><a href="#">Rượu Brandy</a></li>
+                                        <li><a href="#">Rượu Cognac</a></li>
+                                        <li><a href="#">Rượu Armagnac</a></li>
+                                        <li><a href="#">Rượu Rum</a></li>
+                                        <li><a href="#">Rượu Gin</a></li>
+                                        <li><a href="#">Rượu Liqueur</a></li>
+                                        <li><a href="#">Rượu Tequila</a></li>
+                                        <li><a href="#">Rượu XO</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h3>Thương hiệu nổi tiếng</h3>
+                                    <ul class="two-column">
+                                        <li><a href="#">Rượu Chivas</a></li>
+                                        <li><a href="#">Rượu Johnnie Walker</a></li>
+                                        <li><a href="#">Rượu Ballantines</a></li>
+                                        <li><a href="#">Rượu Hibiki</a></li>
+                                        <li><a href="#">Rượu Macallan</a></li>
+                                        <li><a href="#">Rượu Mortlach</a></li>
+                                        <li><a href="#">Rượu Glenfiddich</a></li>
+                                        <li><a href="#">Rượu The Glenlivet</a></li>
+                                        <li><a href="#">Rượu Singleton</a></li>
+                                        <li><a href="#">Rượu Glen Moray</a></li>
+                                        <li><a href="#">Rượu Bacardi</a></li>
+                                        <li><a href="#">Rượu Brugal</a></li>
+                                        <li><a href="#">Rượu Cachaca</a></li>
+                                        <li><a href="#">London Dry Gin</a></li>
+                                        <li><a href="#">Rượu Bols</a></li>
+                                        <li><a href="#">Rượu Bardinet</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">🧧 Rượu Tết</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">🎁 Quà Tết 2026</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Phụ Kiện Rượu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Kiến thức</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Liên hệ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link highlight-text">⚡Khuyến mãi</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner nhỏ gọn với chữ đè -->
+    <div class="banner-wrapper">
+        <div class="banner-container">
+            <img src="banner.png" alt="Banner WINECELLAR" class="banner-img">
+            <div class="banner-overlay"></div>
+            <div class="banner-text">
+                <h1>HỆ THỐNG CỬA HÀNG RƯỢU VANG</h1>
+                <h2>WINECELLAR.vn</h2>
+                <div class="banner-hours">
+                    <span>Thứ 2 – Thứ 7: 8:00 – 21:00</span>
+                    <span>Chủ nhật: 8:00 – 19:30</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Danh sách cửa hàng (store-content) -->
+    <div class="store-content">
+        <h2 style="text-align: center; margin-bottom: 20px;">Danh sách cửa hàng</h2>
+        <div class="store-grid">
+            <!-- Hà Nội -->
+            <div class="store-card">
+                <h3>Hà Nội</h3>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>78 Vũ Phạm Hàm, Phường Yên Hòa</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>098 658 7836</span>
+                </div><br>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>88 Đào Tấn, Phường Giảng Võ</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>096 849 7836</span>
+                </div><br>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>246 Hoàng Ngân, Phường Yên Hoà</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>090 308 2366</span>
+                </div><br>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>43 Phan Chu Trinh, Phường Cửa Nam</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>098 757 7836</span>
+                </div>
+            </div>
+
+            <!-- TP. Hồ Chí Minh -->
+            <div class="store-card">
+                <h3>TP. Hồ Chí Minh</h3>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>188 Nguyễn Văn Thủ, Phường Tân Định</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>091 673 3416</span>
+                </div><br>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>253 Nam Kỳ Khởi Nghĩa, Phường Xuân Hòa</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>091 673 3414</span>
+                </div><br>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>58 Song Hành, Phường Bình Trưng</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>091 673 3415</span>
+                </div>
+            </div>
+
+            <!-- Đà Nẵng, Hội An, Nha Trang, Phú Quốc -->
+            <div class="store-card">
+                <h3>Đà Nẵng</h3>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>21 Hùng Vương, Phường Hải Châu</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>093 556 7172</span>
+                </div><br>
+
+                <h3>Hội An</h3>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Số 166 Nguyễn Trường Tộ, Phường Hội An</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>096 488 7166</span>
+                </div><br>
+
+                <h3>Nha Trang</h3>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Số 15 Hai Bà Trưng, Phường Nha Trang, Tỉnh Khánh Hòa</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>093 508 9768</span>
+                </div><br>
+
+                <h3>Phú Quốc</h3>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>217B đường 30/4, Dương Đông, Đặc khu Phú Quốc, Tỉnh An Giang</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>091 673 9311</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="intro-section">
+        <h2>Hầm Rượu Vang WINECELLAR.vn – Hệ Thống Cửa Hàng Rượu Vang Nhập Khẩu Tại Việt Nam</h2>
+        
+        <p>Từ thức uống được cho là chỉ dành cho giới thượng lưu, rượu vang ngày nay đã có mặt trên mọi bàn tiệc, trở thành đồ uống
+           quen thuộc với giá cả hợp lý. Đặc biệt rượu vang cũng là lựa chọn sang trọng và cao cấp để làm Quà Tặng Doanh Nghiệp, 
+           đối tác, bạn bè, gia đình vào những dịp quan trọng như làm Quà Tặng Sinh Nhật, Quà Tặng Trung Thu, Quà Tặng Tết. 
+           Hiện nay có nhiều địa chỉ bán rượu vang nhưng bạn nên lựa chọn nơi uy tín để mua được sản phẩm chính hãng, chất lượng. 
+           WINCELLAR.vn sẽ gợi ý cho bạn những địa chỉ cửa hàng rượu vang nhập khẩu uy tín trên khắp Việt Nam mà bạn có thể gửi 
+           gắm lòng tin. <strong>WINECELLAR.vn</strong> sẽ gợi ý cho bạn những địa chỉ cửa hàng rượu vang nhập khẩu uy tín trên 
+           khắp Việt Nam mà bạn có thể gửi gắm lòng tin.</p>
+
+        <h3 style="color: var(--primary-red); margin: 30px 0 15px;">Nên Mua Rượu Vang tại Siêu Thị Hay Cửa Hàng Chuyên Rượu Vang?</h3>
+
+        <ul>
+            <li><strong>Ở các siêu thị lớn</strong> thường có gian hàng bày bán rượu với những dòng phổ biến... Ưu điểm khi mua 
+                rượu trong siêu thị là giá cả hợp lý, dễ dàng lựa chọn và khá yên tâm về chất lượng vì các siêu thị kiểm soát chất 
+                lượng nguồn gốc hàng hóa. Tuy nhiên, các siêu thị thường bán những dòng vang phổ thông, không có đa dạng sự lựa 
+                chọn như ở các cửa hàng chuyên về rượu vang. Bên cạnh đó, siêu thị bán nhiều sản phẩm khác nên việc bảo quản rượu 
+                vang ở nhiệt độ lý tưởng với quy cách đặt chai nằm ngang không phải lúc nào cũng thực hiện được. Điều đó sẽ làm 
+                ảnh hưởng đến chất lượng của rượu vang.</li>
+            <li><strong>Ở cửa hàng rượu vang</strong>, bạn sẽ có nhiều sự lựa chọn rượu vang đỏ, rượu vang trắng, rượu whisky, 
+                rượu champagne (rượu sâm banh), đặc biệt là có sự tư vấn của những nhân viên chuyên nghiệp được đào tạo về kiến thức
+                rượu vang, giúp bạn biết thêm về nguồn gốc, hương vị và đưa ra lựa chọn phù hợp nhất. Đặc biệt quy trình bảo quản 
+                rượu tại các cửa hàng chuyên về rượu vang cũng được quan tâm hàng đầu để đảm bảo giữ cho hương vị thơm ngon và giúp
+                rượu vang được phát triển.</li>
+        </ul>
+
+        <div style="width: 800px; height: 600px; color: #6C757D; margin: 0 auto; text-align: center;">
+            <img src="1.jpg" alt="Hình ảnh cửa hàng rượu vang" style="width: 100%; height: 100%; object-fit: cover;"> 
+            <i>Hầm Rượu Vang WINECELLAR.vn – Hệ thống cửa hàng rượu vang uy tín trên toàn quốc tại Hà Nội, <br>Đà Nẵng, Hội An, Nha Trang, Hồ Chí Minh và Phú Quốc</i>
+        </div><br><br><br>
+
+        <h3 style="color: var(--primary-red); margin: 30px 0 15px;">Tiêu Chí Lựa Chọn Cửa Hàng Rượu Vang</h3>
+
+        <ul>
+            <p style="margin-left: -20px;">Tại Hà Nội, Đà Nẵng, Hồ Chí Minh hay các thành phố lớn, có rất nhiều cửa hàng kinh doanh rượu vang và bạn nên đặt ra các tiêu chí để lựa chọn cho mình địa chỉ tin tưởng nhất. Một số tiêu chí bạn có thể tham khảo như:</p>
+            <li>Cửa hàng nằm ở vị trí dễ tìm.</li>
+            <li>Thương hiệu lớn uy tín cung cấp đa dạng các dòng vang được nhập khẩu từ nhiều quốc gia.</li>
+            <li>Sản phẩm có đầy đủ giấy tờ nhập khẩu chính hãng, đầy đủ tem nhãn.</li>
+            <li>Mức giá cả hợp lý từ rượu vang giá rẻ uống hàng ngày tới các dòng vang cao cấp.</li>
+            <li>Đội ngũ nhân viên có kiến thức chuyên môn về rượu vang, tư vấn sản phẩm theo nhu cầu của từng khách hàng.</li>
+            <li>Có môi trường bảo quản rượu vang chuẩn để giữ được hương vị vốn có.</li>
+            <p style="margin-left: -20px;"><b>Hệ thống cửa hàng rượu vang WINECELLAR.vn</b> được đặt tại các vị trí đắc địa, ở các cửa ngõ giao thông thuận lợi, luôn sẵn sàng phục vụ tín đồ yêu vang trên cả nước.</p>
+            <p style="margin-left: -20px;">Các cửa hàng của WINECELLAR.vn được đầu tư cơ sở vật chất, điều kiện bảo quản đạt chuẩn giúp rượu vang giữ được hương vị thơm ngon vốn có. Đội ngũ nhân viên được đào tạo chuyên nghiệp, tư vấn tận tình giúp khách hàng có sự lựa chọn tốt nhất. Đặc biệt, các dòng rượu vang đều có mức giá hợp lý với nhiều chương trình ưu đãi lớn.</p>
+            <p style="margin-left: -20px;">Quý khách có thể liên hệ hotline<strong style="color: var(--primary-red);"> 094 669 8008 – 0903 530 268 – 0903 520 268</strong> hoặc Facebook <strong style="color: var(--primary-red);">WINECELLAR.vn</strong> để được tư vấn và đặt hàng.</p>
+        </ul>
+    </div>
+
+    <!-- Thêm class open-offer-modal cho các nút nhận ưu đãi -->
+    <div class="promo-actions">
+        <a href="#" class="promo-item"><i class="fas fa-map-marker-alt"></i> TÌM CỬA HÀNG</a>
+        <a href="#" class="promo-item open-offer-modal"><i class="fas fa-gift"></i> NHẬN ƯU ĐÃI</a>
+        <a href="#" class="promo-item"><i class="fas fa-briefcase"></i> QUÀ TẶNG DOANH NGHIỆP</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <div class="footer-section">
+                <h4><i class="fas fa-store"></i> WINECELLAR.VN</h4>
+                <p>Địa chỉ: 123 Nguyễn Văn Linh, Quận 7, TP.HCM</p>
+                <p>Hotline: <strong>0909 123 456</strong></p>
+                <p>Email: info@winecellar.vn</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-list"></i> Danh Mục</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Đỏ</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Trắng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Pháp</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Ý</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Chile</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Tây Ban Nha</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-user-shield"></i> Chính Sách</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách bảo mật</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách vận chuyển</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách đổi trả</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Điều khoản sử dụng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Hướng dẫn mua hàng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Câu hỏi thường gặp</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-envelope"></i> Đăng Ký Nhận Tin</h4>
+                <p>Nhận thông tin khuyến mãi và sản phẩm mới từ WINECELLAR.vn</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Email của bạn">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fas fa-credit-card"></i>
+                    <i class="fas fa-qrcode"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 WINECELLAR.vn - Chuyên Rượu Vang Nhập Khẩu Chính Hãng. All rights reserved.</p>
+            <p>Giấy phép kinh doanh số: 123456789 do Sở KH&amp;ĐT TP.HCM cấp ngày 01/01/2020</p>
+        </div>
+    </footer>
+
+    <!-- ===== THANH FLOATING (HIỆN KHI CUỘN LÊN) ===== -->
+    <div class="floating-promo" id="floatingPromo">
+        <a href="#" class="floating-item"><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a>
+        <a href="#" class="floating-item open-offer-modal"><i class="fas fa-gift"></i> Nhận ưu đãi</a>
+        <a href="#" class="floating-item"><i class="fas fa-briefcase"></i> Quà doanh nghiệp</a>
+    </div>
+
+    <!-- ===== MODAL POPUP ĐĂNG KÝ ƯU ĐÃI ===== -->
+    <div id="offerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <!-- Cột form -->
+                <div class="form-col" id="modalFormState">
+                    <h3>Vui lòng để lại thông tin của bạn.</h3>
+                    <p>WINECELLAR.vn sẽ gửi ưu đãi cho quý khách</p>
+                    <form id="offerForm">
+                        <div class="form-group">
+                            <label>Họ và Tên (bắt buộc)</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại (bắt buộc)</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <button type="submit" class="submit-btn">NHẬN ƯU ĐÃI</button>
+                    </form>
+                </div>
+                <!-- Cột sản phẩm -->
+                <!-- <div class="product-col">
+                    <div class="product-image"></div>
+                    <h4>Rượu vang P Médoc 2020</h4>
+                    <p>Dòng rượu vang hương vị thơm mạnh</p>
+                    <div class="product-price">726.000 đ</div>
+                    <span class="special-tag">GIÁ ĐẶC BIỆT</span>
+                    <div>
+                        <span class="abv-tag">1% ABV*</span>
+                        <span class="abv-tag">1% ABV*</span>
+                    </div>
+                </div> -->
+                <!-- Trạng thái thành công (ẩn ban đầu) -->
+                <div id="modalSuccessState" style="display: none; width: 100%;">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Đăng ký được gửi đi thành công</h3>
+                    <p>Cảm ơn bạn đã quan tâm! Chúng tôi sẽ liên hệ sớm nhất.</p>
+                    <button class="close-success-btn">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script xử lý dropdown, floating, và modal -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dropdown menus
+            const dropdowns = document.querySelectorAll('.has-dropdown');
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('mouseenter', function() {
+                    const menu = this.querySelector('.dropdown-menu');
+                    if (menu) menu.style.display = 'grid';
+                });
+                dropdown.addEventListener('mouseleave', function() {
+                    const menu = this.querySelector('.dropdown-menu');
+                    if (menu) menu.style.display = 'none';
+                });
+            });
+
+            // ===== HIỆU ỨNG HIỆN/ẨN THANH FLOATING KHI CUỘN =====
+            let lastScrollTop = 0;
+            const floatingPromo = document.getElementById('floatingPromo');
+            
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop) {
+                    floatingPromo.classList.remove('show');
+                } else {
+                    floatingPromo.classList.add('show');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+
+            setTimeout(() => {
+                if (window.scrollY > 100) {
+                    floatingPromo.classList.add('show');
+                }
+            }, 500);
+
+            // ===== XỬ LÝ MODAL ĐĂNG KÝ ƯU ĐÃI =====
+            const modal = document.getElementById('offerModal');
+            const openBtns = document.querySelectorAll('.open-offer-modal');
+            const closeBtn = document.querySelector('.close-modal');
+            const formState = document.getElementById('modalFormState');
+            const successState = document.getElementById('modalSuccessState');
+            const form = document.getElementById('offerForm');
+            const closeSuccessBtn = document.querySelector('.close-success-btn');
+
+            // Mở modal khi click vào nút "Nhận ưu đãi"
+            openBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Reset về trạng thái form
+                    formState.style.display = 'block';
+                    successState.style.display = 'none';
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden'; // Chặn cuộn nền
+                });
+            });
+
+            // Đóng modal
+            function closeModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                // Reset form
+                form.reset();
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            window.addEventListener('click', function(e) {
+                if (e.target == modal) {
+                    closeModal();
+                }
+            });
+
+            // Xử lý submit form
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+
+                if (name === '' || phone === '') {
+                    alert('Vui lòng điền đầy đủ họ tên và số điện thoại.');
+                    return;
+                }
+
+                // Ẩn form, hiện thông báo thành công
+                formState.style.display = 'none';
+                successState.style.display = 'block';
+            });
+
+            // Nút đóng trong success state
+            closeSuccessBtn.addEventListener('click', closeModal);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ly pha lê</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== TYPOGRAPHY & COLORS ===== */
+        :root {
+            --primary-red: #8B0000;
+            --dark-red: #5A0000;
+            --light-red: #A52A2A;
+            --gold: #D4AF37;
+            --light-gold: #F5E8AA;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #666;
+            --text-dark: #222;
+            --white: #FFFFFF;
+            --green: #2E8B57;
+            --light-bg: #FBF8EE;
+            --cream: #F2EFE2;
+            --border-color: #E8E8E8;
+            --text-light: #6C757D;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        /* ===== MAIN HEADER ===== */
+        .main-header {
+            margin-left: -80px;
+            background: var(--light-bg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: 77px;
+            width: 105%;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 77px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .main-nav {
+            flex: 1;
+            margin: 0 30px;
+            display: block !important;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 28px 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-red);
+        }
+
+        .nav-link.highlight-text {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        /* Dropdown Menus */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            padding: 25px;
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            min-width: 1200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        .has-dropdown:hover .dropdown-menu {
+            display: grid;
+        }
+
+        .dropdown-column h3 {
+            color: var(--text-dark);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-red);
+        }
+
+        .dropdown-column ul {
+            list-style: none;
+            margin-bottom: 20px;
+            padding: 0;
+        }
+
+        .dropdown-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .dropdown-column a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14.5px;
+            font-weight: 400;
+            display: block;
+            padding: 5px 0;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .dropdown-column a:hover {
+            color: var(--primary-red);
+            padding-left: 5px;
+        }
+
+        .dropdown-column a.highlight {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .dropdown-column .two-column {
+            column-count: 2;
+            column-gap: 20px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            background: var(--light-gray);
+            border-radius: 50px;
+            overflow: hidden;
+            padding: 8px 15px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 0 10px;
+            width: 180px;
+            font-size: 14px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+        }
+
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: var(--dark-gray);
+            cursor: pointer;
+        }
+
+        .icon-link {
+            color: var(--text-dark);
+            font-size: 18px;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .cart-icon .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary-red);
+            color: white;
+            font-size: 11px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== BANNER ===== */
+        .banner-wrapper {
+            margin-top: 80px;
+            width: 100%;
+        }
+
+        .banner-container {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            overflow: hidden;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== DANH MỤC LY PHA LÊ ===== */
+        .category-section {
+            padding: 60px 0;
+            background-color: #fff;
+        }
+
+        .category-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--medium-gray);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(139,0,0,0.1);
+            border-color: var(--primary-red);
+        }
+
+        .category-image {
+            height: 220px;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-gray);
+            font-size: 14px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="%23aaa" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 60px;
+            background-color: #f0f0f0;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .category-info {
+            padding: 20px 15px;
+            text-align: center;
+        }
+
+        .category-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .category-info p {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            margin: 0;
+        }
+
+        /* ===== SẢN PHẨM BÁN CHẠY ===== */
+        .best-seller-section {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+        }
+
+        .best-seller-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .best-seller-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .best-seller-sub {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .best-seller-sub strong {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            background: var(--primary-red);
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 10px 30px;
+            border-radius: 50px;
+            margin: 20px 0 30px;
+            letter-spacing: 2px;
+            box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+        }
+
+        /* Hai cột: ảnh trái, carousel phải */
+        .best-seller-row {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .best-seller-left {
+            flex: 1;
+        }
+
+        .best-seller-left img {
+            width: 600px;
+            height: 500px;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        .best-seller-right {
+            flex: 2;
+            min-width: 0;
+        }
+
+        /* Carousel */
+        .carousel-container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .carousel-wrapper {
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 30px;
+        }
+
+        .carousel-slide {
+            flex: 0 0 calc(50% - 15px);
+            max-width: calc(50% - 15px);
+            box-sizing: border-box;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--medium-gray);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(139,0,0,0.1);
+            border-color: var(--primary-red);
+        }
+
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px 15px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.4;
+            min-height: 50px;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin: 10px 0 15px;
+        }
+
+        .add-to-cart {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 12px 0;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: auto;
+            border: 2px solid var(--primary-red);
+        }
+
+        .add-to-cart:hover {
+            background: var(--dark-red);
+            transform: scale(1.02);
+        }
+
+        /* Nút điều hướng - chỉ hiện mũi tên */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--primary-red);
+            font-size: 3rem;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, color 0.3s;
+            padding: 0 10px;
+            margin-left: -10px;
+            margin-right: -10px;
+        }
+
+        .carousel-container:hover .carousel-btn {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .carousel-btn:hover {
+            color: var(--dark-red);
+        }
+
+        .carousel-btn.prev {
+            left: 0;
+        }
+
+        .carousel-btn.next {
+            right: 0;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: var(--primary-red);
+        }
+
+        /* ===== BỘ SƯU TẬP PHA LÊ RIEDEL ===== */
+        .collection-section {
+            position: relative;
+            width: 100%;
+            height: 800px;
+            background-image: url('13.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .collection-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .collection-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 20px;
+            margin-bottom: -220px;
+        }
+
+        .collection-subtitle {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: -250px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        /* Class category-card2 dựa trên product-card của file quatangdoanhnghiep */
+        .category-card2 {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--medium-gray);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .category-card2:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(139,0,0,0.1);
+            border-color: var(--primary-red);
+        }
+
+        .category-card2 .category-image2 {
+            height: 200px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px 20px 0 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="%23aaa" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 60px;
+        }
+
+        .category-card2 .category-image2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .category-card2:hover .category-image2 img {
+            transform: scale(1.05);
+        }
+
+        .category-card2 .category-info2 {
+            padding: 20px 15px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-card2 .category-info2 h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .category-card2 .category-info2 p {
+            font-size: 0.95rem;
+            color: var(--dark-gray);
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .collection-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .collection-subtitle {
+                margin-top: -40px;
+                font-size: 16px;
+            }
+            .collection-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        /* Responsive chung */
+        @media (max-width: 992px) {
+            .best-seller-row {
+                flex-direction: column;
+            }
+            .best-seller-left {
+                max-width: 500px;
+                width: 100%;
+            }
+            .best-seller-left img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-container {
+                padding: 0 40px;
+            }
+            .carousel-slide {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            .carousel-btn {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .best-seller-header h2 {
+                font-size: 2rem;
+            }
+            .offer-badge {
+                font-size: 1.5rem;
+                padding: 8px 20px;
+            }
+        }
+
+        .promo-actions {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0 30px;
+            flex-wrap: wrap;
+        }
+        .promo-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background-color: #f8f8f8;
+            border: 2px solid #8B1E1E;
+            border-radius: 60px;
+            color: #8B1E1E;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(139,30,30,0.1);
+        }
+        .promo-item i {
+            font-size: 22px;
+        }
+        .promo-item:hover {
+            background-color: #8B1E1E;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(139,30,30,0.3);
+        }
+
+        /* ===== THANH FLOATING (HIỆN KHI CUỘN LÊN) ===== */
+        .floating-promo {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            border-top: 3px solid #8B1E1E;
+            flex-wrap: wrap;
+        }
+        .floating-promo.show {
+            transform: translateY(0);
+        }
+        .floating-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: #8B1E1E;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
+            border: 1px solid #8B1E1E;
+        }
+        .floating-item i {
+            font-size: 18px;
+        }
+        .floating-item:hover {
+            background: #6b1717;
+            transform: scale(1.02);
+        }
+        .floating-item.outline {
+            background: white;
+            color: #8B1E1E;
+        }
+        .floating-item.outline:hover {
+            background: #8B1E1E;
+            color: white;
+        }
+        .main-footer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="#">
+                        <img src="https://winecellar.vn/wp-content/uploads/2023/03/Logo_WineCellar-01-1.svg" alt="WINECELLAR.vn" width="180">
+                    </a>
+                </div>
+
+                <!-- Main Navigation -->
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Rượu Vang</a>
+                            <div class="dropdown-menu">
+                                <!-- Nội dung dropdown -->
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Rượu Champagne</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Rượu mạnh</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">🧧 Rượu Tết</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">🎁 Quà Tết 2026</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Phụ Kiện Rượu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Kiến thức</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Liên hệ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link highlight-text">⚡Khuyến mãi</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner 9.jpg -->
+    <div class="banner-wrapper">
+        <div class="banner-container">
+            <img src="9.jpg" alt="Banner rượu vang" class="banner-img">
+        </div>
+    </div>
+
+    <!-- Ảnh 10.jpg -->
+    <div>
+        <img src="10.jpg" style="width: 100%; display: block;" alt="Banner phụ">
+    </div>
+
+    <!-- Section danh mục DÒNG LY PHA LÊ RIEDEL -->
+    <section class="category-section">
+        <div class="container">
+            <h2 class="category-title">DÒNG LY PHA LÊ RIEDEL</h2>
+            <div class="category-grid">
+                <!-- Card 1 -->
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="11.jpg" style="height: 220px; width: 100%; object-fit: cover;" alt="LY VANG ĐỎ">
+                    </div>
+                    <div class="category-info">
+                        <h3>LY VANG ĐỎ</h3>
+                        <p>Red Wine Glass</p>
+                    </div>
+                </div>
+                <!-- Các card khác -->
+                <div class="category-card">
+                    <div class="category-image"></div>
+                    <div class="category-info">
+                        <h3>LY VANG TRẮNG</h3>
+                        <p>White Wine Glass</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image"></div>
+                    <div class="category-info">
+                        <h3>LY CHAMPAGNE</h3>
+                        <p>Champagne Glass</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image"></div>
+                    <div class="category-info">
+                        <h3>LY RƯỢU MẠNH</h3>
+                        <p>Spirit Glass</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image"></div>
+                    <div class="category-info">
+                        <h3>LY CHÂN MÀU</h3>
+                        <p>Color Foot Glass</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image"></div>
+                    <div class="category-info">
+                        <h3>LY COCKTAIL</h3>
+                        <p>Cocktail Glass</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image"></div>
+                    <div class="category-info">
+                        <h3>DECANTER</h3>
+                        <p>Decanter</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image"></div>
+                    <div class="category-info">
+                        <h3>LY THỦ CÔNG</h3>
+                        <p>Handmade Glass</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section SẢN PHẨM BÁN CHẠY -->
+    <section class="best-seller-section">
+        <div class="container">
+            <div class="best-seller-header">
+                <h2>SẢN PHẨM BÁN CHẠY</h2>
+            </div>
+
+            <div class="best-seller-row">
+                <div class="best-seller-left">
+                    <img src="12.jpg" alt="Grape Riedel">
+                </div>
+                <div class="best-seller-right">
+                    <div class="carousel-container">
+                        <button class="carousel-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                        <div class="carousel-wrapper">
+                            <div class="carousel-track" id="carouselTrack">
+                                <!-- Sản phẩm sẽ được thêm bằng JS -->
+                            </div>
+                        </div>
+                        <button class="carousel-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                        <div class="carousel-dots" id="carouselDots"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BỘ SƯU TẬP PHA LÊ RIEDEL -->
+    <section class="collection-section">
+        <div class="collection-overlay"></div>
+        <div class="collection-content">
+            <p class="collection-subtitle">BỘ SƯU TẬP PHA LÊ RIEDEL</p>
+            <div class="collection-grid">
+                <!-- Item 1 -->
+                <div class="category-card2">
+                    <div class="category-image2">
+                        <!-- Có thể thêm ảnh nếu có -->
+                    </div>
+                    <div class="category-info2">
+                        <h3>EXTREME</h3>
+                        <p>FATTO A MANO</p>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="category-card2">
+                    <div class="category-image2"></div>
+                    <div class="category-info2">
+                        <h3>VELOCE</h3>
+                        <p>SOMMELIER BLACK TIE</p>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="category-card2">
+                    <div class="category-image2"></div>
+                    <div class="category-info2">
+                        <h3>PERFORMANCE</h3>
+                        <p>SOMMELIER BLACK SERIES</p>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="category-card2">
+                    <div class="category-image2"></div>
+                    <div class="category-info2">
+                        <h3>WINEWINGS</h3>
+                        <p>DRINK SPECIFIC GLASSWARE</p>
+                    </div>
+                </div>
+                <!-- Item 5 (thừa? nhưng giữ nguyên) -->
+                <div class="category-card2">
+                    <div class="category-image2"></div>
+                    <div class="category-info2">
+                        <h3>WINEWINGS</h3>
+                        <p>DRINK SPECIFIC GLASSWARE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section DECANTER -->
+    <section class="best-seller-section">
+        <div class="container">
+            <div class="best-seller-header">
+                <h2>DECANTER</h2>
+            </div>
+
+            <div class="best-seller-row">
+                <div class="best-seller-left">
+                    <img src="12.jpg" alt="Decanter">
+                </div>
+                <div class="best-seller-right">
+                    <div class="carousel-container">
+                        <button class="carousel-btn prev" id="prevBtnDecanter"><i class="fas fa-chevron-left"></i></button>
+                        <div class="carousel-wrapper">
+                            <div class="carousel-track" id="carouselTrackDecanter">
+                                <!-- Sản phẩm decanter sẽ được thêm bằng JS -->
+                            </div>
+                        </div>
+                        <button class="carousel-btn next" id="nextBtnDecanter"><i class="fas fa-chevron-right"></i></button>
+                        <div class="carousel-dots" id="carouselDotsDecanter"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thêm class open-offer-modal cho các nút nhận ưu đãi -->
+    <div class="promo-actions">
+        <a href="#" class="promo-item"><i class="fas fa-map-marker-alt"></i> TÌM CỬA HÀNG</a>
+        <a href="#" class="promo-item open-offer-modal"><i class="fas fa-gift"></i> NHẬN ƯU ĐÃI</a>
+        <a href="#" class="promo-item"><i class="fas fa-briefcase"></i> QUÀ TẶNG DOANH NGHIỆP</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <div class="footer-section">
+                <h4><i class="fas fa-store"></i> WINECELLAR.VN</h4>
+                <p>Địa chỉ: 123 Nguyễn Văn Linh, Quận 7, TP.HCM</p>
+                <p>Hotline: <strong>0909 123 456</strong></p>
+                <p>Email: info@winecellar.vn</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-list"></i> Danh Mục</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Đỏ</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Trắng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Pháp</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Ý</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Chile</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Tây Ban Nha</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-user-shield"></i> Chính Sách</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách bảo mật</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách vận chuyển</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách đổi trả</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Điều khoản sử dụng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Hướng dẫn mua hàng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Câu hỏi thường gặp</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-envelope"></i> Đăng Ký Nhận Tin</h4>
+                <p>Nhận thông tin khuyến mãi và sản phẩm mới từ WINECELLAR.vn</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Email của bạn">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fas fa-credit-card"></i>
+                    <i class="fas fa-qrcode"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 WINECELLAR.vn - Chuyên Rượu Vang Nhập Khẩu Chính Hãng. All rights reserved.</p>
+            <p>Giấy phép kinh doanh số: 123456789 do Sở KH&amp;ĐT TP.HCM cấp ngày 01/01/2020</p>
+        </div>
+    </footer>
+
+    <!-- ===== THANH FLOATING (HIỆN KHI CUỘN LÊN) ===== -->
+    <div class="floating-promo" id="floatingPromo">
+        <a href="#" class="floating-item"><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a>
+        <a href="#" class="floating-item open-offer-modal"><i class="fas fa-gift"></i> Nhận ưu đãi</a>
+        <a href="#" class="floating-item"><i class="fas fa-briefcase"></i> Quà doanh nghiệp</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sản phẩm bán chạy
+            const products = [
+                {
+                    name: 'Ly Rượu Vang Đỏ GRAPE@RIEDEL Pinot Noir/Nebbiolo/Aperitivo',
+                    price: '297.000 ₫',
+                    image: '11.jpg'
+                },
+                {
+                    name: 'Ly Rượu Vang Đỏ GRAPE@RIEDEL Cabernet/Merlot/Cocktail',
+                    price: '297.000 ₫',
+                    image: '11.jpg'
+                },
+                {
+                    name: 'Ly Rượu Vang Trắng GRAPE@RIEDEL Chardonnay/Sauvignon Blanc',
+                    price: '297.000 ₫',
+                    image: '11.jpg'
+                },
+                {
+                    name: 'Ly Champagne GRAPE@RIEDEL Brut/Prosecco',
+                    price: '320.000 ₫',
+                    image: '11.jpg'
+                },
+                {
+                    name: 'Ly Rượu Mạnh GRAPE@RIEDEL Whisky/Brandy',
+                    price: '350.000 ₫',
+                    image: '11.jpg'
+                }
+            ];
+
+            const track = document.getElementById('carouselTrack');
+            const dotsContainer = document.getElementById('carouselDots');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            let currentIndex = 0;
+            let slidesPerView = window.innerWidth <= 768 ? 1 : 2;
+            const totalSlides = products.length;
+
+            function renderProducts() {
+                track.innerHTML = '';
+                products.forEach(product => {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide';
+                    slide.innerHTML = `
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="${product.image}" alt="${product.name}">
+                            </div>
+                            <div class="product-info">
+                                <h3>${product.name}</h3>
+                                <div class="product-price">${product.price}</div>
+                                <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                            </div>
+                        </div>
+                    `;
+                    track.appendChild(slide);
+                });
+                updateTrackPosition();
+                renderDots();
+            }
+
+            function updateTrackPosition() {
+                const slideWidth = track.children[0]?.offsetWidth || 0;
+                const gap = 30;
+                const translateX = -currentIndex * (slideWidth + gap);
+                track.style.transform = `translateX(${translateX}px)`;
+            }
+
+            function renderDots() {
+                const numDots = Math.ceil(totalSlides / slidesPerView);
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < numDots; i++) {
+                    const dot = document.createElement('span');
+                    dot.className = `dot ${i === currentIndex ? 'active' : ''}`;
+                    dot.addEventListener('click', () => {
+                        currentIndex = i;
+                        updateTrackPosition();
+                        updateDots();
+                    });
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function updateDots() {
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            window.addEventListener('resize', () => {
+                slidesPerView = window.innerWidth <= 768 ? 1 : 2;
+                const maxIndex = Math.ceil(totalSlides / slidesPerView) - 1;
+                if (currentIndex > maxIndex) {
+                    currentIndex = maxIndex;
+                }
+                updateTrackPosition();
+                renderDots();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateTrackPosition();
+                    updateDots();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                const maxIndex = Math.ceil(totalSlides / slidesPerView) - 1;
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateTrackPosition();
+                    updateDots();
+                }
+            });
+
+            renderProducts();
+
+            // ===== DECANTER CAROUSEL =====
+            const productsDecanter = [
+                {
+                    name: 'Decanter Riedel Extreme',
+                    price: '1.200.000 ₫',
+                    image: '11.jpg'
+                },
+                {
+                    name: 'Decanter Riedel Veloce',
+                    price: '1.500.000 ₫',
+                    image: '11.jpg'
+                },
+                {
+                    name: 'Decanter Riedel Performance',
+                    price: '1.800.000 ₫',
+                    image: '11.jpg'
+                },
+                {
+                    name: 'Decanter Riedel Winewings',
+                    price: '2.100.000 ₫',
+                    image: '11.jpg'
+                },
+                {
+                    name: 'Decanter Riedel Sommelier',
+                    price: '2.500.000 ₫',
+                    image: '11.jpg'
+                }
+            ];
+
+            const trackDecanter = document.getElementById('carouselTrackDecanter');
+            const dotsDecanter = document.getElementById('carouselDotsDecanter');
+            const prevBtnDecanter = document.getElementById('prevBtnDecanter');
+            const nextBtnDecanter = document.getElementById('nextBtnDecanter');
+
+            let currentIndexDecanter = 0;
+            let slidesPerViewDecanter = window.innerWidth <= 768 ? 1 : 2;
+            const totalSlidesDecanter = productsDecanter.length;
+
+            function renderProductsDecanter() {
+                trackDecanter.innerHTML = '';
+                productsDecanter.forEach(product => {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide';
+                    slide.innerHTML = `
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="${product.image}" alt="${product.name}">
+                            </div>
+                            <div class="product-info">
+                                <h3>${product.name}</h3>
+                                <div class="product-price">${product.price}</div>
+                                <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                            </div>
+                        </div>
+                    `;
+                    trackDecanter.appendChild(slide);
+                });
+                updateTrackPositionDecanter();
+                renderDotsDecanter();
+            }
+
+            function updateTrackPositionDecanter() {
+                const slideWidth = trackDecanter.children[0]?.offsetWidth || 0;
+                const gap = 30;
+                const translateX = -currentIndexDecanter * (slideWidth + gap);
+                trackDecanter.style.transform = `translateX(${translateX}px)`;
+            }
+
+            function renderDotsDecanter() {
+                const numDots = Math.ceil(totalSlidesDecanter / slidesPerViewDecanter);
+                dotsDecanter.innerHTML = '';
+                for (let i = 0; i < numDots; i++) {
+                    const dot = document.createElement('span');
+                    dot.className = `dot ${i === currentIndexDecanter ? 'active' : ''}`;
+                    dot.addEventListener('click', () => {
+                        currentIndexDecanter = i;
+                        updateTrackPositionDecanter();
+                        updateDotsDecanter();
+                    });
+                    dotsDecanter.appendChild(dot);
+                }
+            }
+
+            function updateDotsDecanter() {
+                const dots = document.querySelectorAll('#carouselDotsDecanter .dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndexDecanter);
+                });
+            }
+
+            window.addEventListener('resize', () => {
+                slidesPerViewDecanter = window.innerWidth <= 768 ? 1 : 2;
+                const maxIndex = Math.ceil(totalSlidesDecanter / slidesPerViewDecanter) - 1;
+                if (currentIndexDecanter > maxIndex) {
+                    currentIndexDecanter = maxIndex;
+                }
+                updateTrackPositionDecanter();
+                renderDotsDecanter();
+            });
+
+            prevBtnDecanter.addEventListener('click', () => {
+                if (currentIndexDecanter > 0) {
+                    currentIndexDecanter--;
+                    updateTrackPositionDecanter();
+                    updateDotsDecanter();
+                }
+            });
+
+            nextBtnDecanter.addEventListener('click', () => {
+                const maxIndex = Math.ceil(totalSlidesDecanter / slidesPerViewDecanter) - 1;
+                if (currentIndexDecanter < maxIndex) {
+                    currentIndexDecanter++;
+                    updateTrackPositionDecanter();
+                    updateDotsDecanter();
+                }
+            });
+
+            renderProductsDecanter();
+
+            // ===== HIỆU ỨNG HIỆN/ẨN THANH FLOATING KHI CUỘN =====
+            let lastScrollTop = 0;
+            const floatingPromo = document.getElementById('floatingPromo');
+            
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop) {
+                    floatingPromo.classList.remove('show');
+                } else {
+                    floatingPromo.classList.add('show');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+
+            setTimeout(() => {
+                if (window.scrollY > 100) {
+                    floatingPromo.classList.add('show');
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

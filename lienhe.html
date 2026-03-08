@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding-top: 77px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        :root {
+            --primary-red: #8B0000;
+            --dark-red: #5A0000;
+            --light-red: #A52A2A;
+            --gold: #D4AF37;
+            --light-gold: #F5E8AA;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #666;
+            --text-dark: #222;
+            --white: #FFFFFF;
+            --green: #2E8B57;
+            --light-bg: #FBF8EE;
+            --cream: #F2EFE2;
+            --border-color: #E8E8E8;
+            --text-light: #6C757D;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        /* ===== MAIN HEADER ===== */
+        .main-header {
+            background: var(--light-bg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: 77px;
+            width: 100%;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 77px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .main-nav {
+            flex: 1;
+            margin: 0 30px;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 28px 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-red);
+        }
+
+        .nav-link.highlight-text {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            padding: 25px;
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            min-width: 1200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        .has-dropdown:hover .dropdown-menu {
+            display: grid;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            background: var(--light-gray);
+            border-radius: 50px;
+            overflow: hidden;
+            padding: 8px 15px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 0 10px;
+            width: 180px;
+            font-size: 14px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+        }
+
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: var(--dark-gray);
+            cursor: pointer;
+        }
+
+        .icon-link {
+            color: var(--text-dark);
+            font-size: 18px;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .cart-icon .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary-red);
+            color: white;
+            font-size: 11px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== STORE CARDS ===== */
+        .store-content {
+            max-width: 1280px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .store-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--medium-gray);
+        }
+
+        .store-card h3 {
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            font-size: 20px;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 10px;
+        }
+
+        .store-address {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .store-address i {
+            color: var(--primary-red);
+            width: 20px;
+            margin-top: 3px;
+        }
+
+        .store-address span {
+            flex: 1;
+        }
+
+        .store-phone {
+            display: flex;
+            gap: 10px;
+            color: var(--dark-gray);
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        /* ===== CONTACT FORM ===== */
+        .contact-section {
+            margin: 60px auto;
+        }
+
+        .contact-form-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid var(--medium-gray);
+        }
+
+        .contact-form-wrapper h3 {
+            font-size: 28px;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .contact-desc {
+            text-align: center;
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+
+        .hotline-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            background: var(--light-gray);
+            padding: 15px 20px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .hotline-info i {
+            color: var(--primary-red);
+            margin-right: 8px;
+        }
+
+        .hotline-info strong {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .form-group .required {
+            color: var(--primary-red);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 18px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: border 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(139,0,0,0.1);
+        }
+
+        .submit-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+            display: block;
+            margin: 0 auto;
+            min-width: 200px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-red);
+            transform: scale(1.02);
+        }
+
+        .form-success-message {
+            text-align: center;
+            margin-top: 25px;
+            padding: 15px;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 8px;
+            font-weight: 500;
+            border: 1px solid #c3e6cb;
+        }
+
+        @media (max-width: 768px) {
+            .hotline-info {
+                flex-direction: column;
+                gap: 10px;
+                border-radius: 20px;
+                text-align: center;
+            }
+            .contact-form-wrapper {
+                padding: 25px;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .main-footer {
+            background: var(--dark-red) !important;
+            color: white;
+            padding-top: 50px;
+            margin-top: 0;
+            width: 100%;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            padding-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            opacity: 0.9;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background 0.3s;
+            margin-bottom: 0;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-red);
+        }
+
+        .newsletter {
+            display: flex;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 6px 0 0 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .newsletter button {
+            background: var(--gold);
+            color: var(--dark-red);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .newsletter button:hover {
+            background: var(--light-gold);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            font-size: 24px;
+            margin-top: 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 5px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .promo-actions {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0 30px;
+            flex-wrap: wrap;
+        }
+        .promo-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background-color: #f8f8f8;
+            border: 2px solid #8B1E1E;
+            border-radius: 60px;
+            color: #8B1E1E;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(139,30,30,0.1);
+        }
+        .promo-item i {
+            font-size: 22px;
+        }
+        .promo-item:hover {
+            background-color: #8B1E1E;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(139,30,30,0.3);
+        }
+
+        /* ===== THANH FLOATING (HIỆN KHI CUỘN LÊN) ===== */
+        .floating-promo {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            border-top: 3px solid #8B1E1E;
+            flex-wrap: wrap;
+        }
+        .floating-promo.show {
+            transform: translateY(0);
+        }
+        .floating-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: #8B1E1E;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
+            border: 1px solid #8B1E1E;
+        }
+        .floating-item i {
+            font-size: 18px;
+        }
+        .floating-item:hover {
+            background: #6b1717;
+            transform: scale(1.02);
+        }
+        .floating-item.outline {
+            background: white;
+            color: #8B1E1E;
+        }
+        .floating-item.outline:hover {
+            background: #8B1E1E;
+            color: white;
+        }
+        .main-footer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="#">
+                        <img src="https://winecellar.vn/wp-content/uploads/2023/03/Logo_WineCellar-01-1.svg" alt="WINECELLAR.vn" width="180">
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item has-dropdown"><a href="#" class="nav-link">Rượu Vang</a></li>
+                        <li class="nav-item has-dropdown"><a href="#" class="nav-link">Rượu Champagne</a></li>
+                        <li class="nav-item has-dropdown"><a href="#" class="nav-link">Rượu mạnh</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">🧧 Rượu Tết</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">🎁 Quà Tết 2026</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Phụ Kiện Rượu</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Kiến thức</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Liên hệ</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link highlight-text">⚡Khuyến mãi</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Tìm kiếm...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <a href="#" class="icon-link"><i class="far fa-user"></i></a>
+                    <a href="#" class="icon-link cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Liên hệ với chúng tôi (danh sách cửa hàng) -->
+    <div class="store-content">
+        <h2 style="text-align: center; margin-bottom: 20px;">Liên hệ với chúng tôi</h2>
+        <div class="store-grid">
+            <!-- Hà Nội -->
+            <div class="store-card">
+                <h3>Hà Nội</h3>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>78 Vũ Phạm Hàm, Phường Yên Hòa</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>098 658 7836</span>
+                </div><br>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>88 Đào Tấn, Phường Giảng Võ</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>096 849 7836</span>
+                </div><br>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>246 Hoàng Ngân, Phường Yên Hoà</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>090 308 2366</span>
+                </div><br>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>43 Phan Chu Trinh, Phường Cửa Nam</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>098 757 7836</span>
+                </div>
+            </div>
+
+            <!-- TP. Hồ Chí Minh -->
+            <div class="store-card">
+                <h3>TP. Hồ Chí Minh</h3>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>188 Nguyễn Văn Thủ, Phường Tân Định</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>091 673 3416</span>
+                </div><br>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>253 Nam Kỳ Khởi Nghĩa, Phường Xuân Hòa</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>091 673 3414</span>
+                </div><br>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>58 Song Hành, Phường Bình Trưng</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>091 673 3415</span>
+                </div>
+            </div>
+
+            <!-- Đà Nẵng, Hội An, Nha Trang, Phú Quốc -->
+            <div class="store-card">
+                <h3>Đà Nẵng</h3>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>21 Hùng Vương, Phường Hải Châu</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>093 556 7172</span>
+                </div><br>
+
+                <h3>Hội An</h3>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Số 166 Nguyễn Trường Tộ, Phường Hội An</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>096 488 7166</span>
+                </div><br>
+
+                <h3>Nha Trang</h3>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Số 15 Hai Bà Trưng, Phường Nha Trang, Tỉnh Khánh Hòa</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>093 508 9768</span>
+                </div><br>
+
+                <h3>Phú Quốc</h3>
+                <div class="store-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>217B đường 30/4, Dương Đông, Đặc khu Phú Quốc, Tỉnh An Giang</span>
+                </div>
+                <div class="store-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>091 673 9311</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FORM LIÊN HỆ (thêm mới) ===== -->
+    <section class="contact-section container">
+        <div class="contact-form-wrapper">
+            <h3>THÔNG TIN LIÊN HỆ</h3>
+            <p class="contact-desc">Để nhận thông tin tư vấn nhanh chóng, vui lòng liên hệ các hotline của chúng tôi:</p>
+            <div class="hotline-info">
+                <span><i class="fas fa-phone-alt"></i> Hotline (24/7): <strong>094 669 8008</strong></span>
+                <span><i class="far fa-envelope"></i> Email: <strong>info@winecellar.vn</strong></span>
+            </div>
+
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>Họ và tên <span class="required">*</span></label>
+                    <input type="text" name="name" placeholder="Nhập họ và tên" required>
+                </div>
+                <div class="form-group">
+                    <label>Email <span class="required">*</span></label>
+                    <input type="email" name="email" placeholder="Nhập email" required>
+                </div>
+                <div class="form-group">
+                    <label>Số điện thoại <span class="required">*</span></label>
+                    <input type="tel" name="phone" placeholder="Nhập số điện thoại" required>
+                </div>
+                <div class="form-group">
+                    <label>Nội dung</label>
+                    <textarea name="message" rows="4" placeholder="Nhập nội dung..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">GỬI ĐI</button>
+                <div class="form-success-message" style="display: none;">Xin cảm ơn, form đã được gửi thành công.</div>
+            </form>
+        </div>
+    </section>
+
+    <div class="promo-actions">
+        <a href="#" class="promo-item"><i class="fas fa-map-marker-alt"></i> TÌM CỬA HÀNG</a>
+        <a href="#" class="promo-item open-offer-modal"><i class="fas fa-gift"></i> NHẬN ƯU ĐÃI</a>
+        <a href="#" class="promo-item"><i class="fas fa-briefcase"></i> QUÀ TẶNG DOANH NGHIỆP</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <div class="footer-section">
+                <h4><i class="fas fa-store"></i> WINECELLAR.VN</h4>
+                <p>Địa chỉ: 123 Nguyễn Văn Linh, Quận 7, TP.HCM</p>
+                <p>Hotline: <strong>0909 123 456</strong></p>
+                <p>Email: info@winecellar.vn</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-list"></i> Danh Mục</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Đỏ</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Trắng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Pháp</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Ý</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Chile</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Tây Ban Nha</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-user-shield"></i> Chính Sách</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách bảo mật</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách vận chuyển</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách đổi trả</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Điều khoản sử dụng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Hướng dẫn mua hàng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Câu hỏi thường gặp</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-envelope"></i> Đăng Ký Nhận Tin</h4>
+                <p>Nhận thông tin khuyến mãi và sản phẩm mới từ WINECELLAR.vn</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Email của bạn">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fas fa-credit-card"></i>
+                    <i class="fas fa-qrcode"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 WINECELLAR.vn - Chuyên Rượu Vang Nhập Khẩu Chính Hãng. All rights reserved.</p>
+            <p>Giấy phép kinh doanh số: 123456789 do Sở KH&amp;ĐT TP.HCM cấp ngày 01/01/2020</p>
+        </div>
+    </footer>
+
+    <!-- ===== THANH FLOATING (HIỆN KHI CUỘN LÊN) ===== -->
+    <div class="floating-promo" id="floatingPromo">
+        <a href="#" class="floating-item"><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a>
+        <a href="#" class="floating-item open-offer-modal"><i class="fas fa-gift"></i> Nhận ưu đãi</a>
+        <a href="#" class="floating-item"><i class="fas fa-briefcase"></i> Quà doanh nghiệp</a>
+    </div>
+
+    <!-- JavaScript xử lý gửi form và hiển thị thông báo thành công -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const successMsg = form.querySelector('.form-success-message');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();  // Chặn reload trang
+
+                // Ẩn thông báo cũ (nếu có)
+                successMsg.style.display = 'none';
+
+                // Lấy giá trị các trường bắt buộc
+                const name = form.querySelector('input[name="name"]').value.trim();
+                const email = form.querySelector('input[name="email"]').value.trim();
+                const phone = form.querySelector('input[name="phone"]').value.trim();
+
+                // Kiểm tra không bỏ trống
+                if (name === '' || email === '' || phone === '') {
+                    alert('Vui lòng điền đầy đủ các trường bắt buộc (có dấu *)');
+                    return;
+                }
+
+                // Kiểm tra email cơ bản
+                if (!email.includes('@') || !email.includes('.')) {
+                    alert('Email không hợp lệ');
+                    return;
+                }
+
+                // Nếu hợp lệ, hiển thị thông báo thành công
+                successMsg.style.display = 'block';
+
+                // (Tùy chọn) Cuộc nhẹ xuống thông báo để người dùng thấy
+                successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            // ===== HIỆU ỨNG HIỆN/ẨN THANH FLOATING KHI CUỘN =====
+            let lastScrollTop = 0;
+            const floatingPromo = document.getElementById('floatingPromo');
+                
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
+                if (scrollTop > lastScrollTop) {
+                    floatingPromo.classList.remove('show');
+                } else {
+                    floatingPromo.classList.add('show');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+
+            setTimeout(() => {
+                if (window.scrollY > 100) {
+                    floatingPromo.classList.add('show');
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rượu Vang Pháp Domaine Faiveley Bourgogne Pinot Noir 2023 | WINECELLAR.vn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for product detail page - Updated for left image layout */
+        .product-detail-wrapper {
+            max-width: 1280px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .product-detail-container {
+            display: flex;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .product-image-section {
+            flex: 0 0 45%;
+            max-width: 45%;
+        }
+        
+        .product-image-main {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .product-image-main img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .product-info-section {
+            flex: 1;
+            padding-top: 10px;
+        }
+        
+        .product-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 0px;
+            color: #8B1E1E;
+            line-height: 1.2;
+        }
+        
+        .product-sku-rating {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 0px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .product-sku {
+            font-size: 16px;
+            color: var(--dark-gray);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .rating-stars {
+            color: var(--gold);
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+        
+        .rating-text {
+            color: var(--dark-gray);
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .product-description {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+        }
+        
+        /* ===== BỐ CỤC 3 CỘT CHO THÔNG SỐ ===== */
+        .product-specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px 20px;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .spec-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--dark-gray);
+            font-weight: 600;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        
+        .spec-label i {
+            width: 16px;
+            text-align: center;
+            color: #8B1E1E;
+            font-size: 14px;
+        }
+        
+        .spec-value {
+            font-size: 15px;
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-left: 24px;
+            word-break: break-word;
+        }
+        /* ======================================== */
+        
+        .product-subtitle {
+            font-size: 22px;
+            font-weight: 600;
+            text-align: center;
+            margin: 0px 0;
+            color: #8B1E1E;
+            padding: 15px 0;
+            border-top: 1px solid var(--medium-gray);
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .product-price-section {
+            padding: 30px 0 0 0;  
+            margin-bottom: 30px;
+        }
+        
+        .product-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-bottom: 20px;
+            text-align: left;       /* căn trái */
+        }
+        
+        /* === HÀNG TÁC VỤ: SỐ LƯỢNG + NÚT THÊM VÀO GIỎ === */
+        .product-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0;       /* bỏ margin cũ */
+            flex-shrink: 0;        /* không co lại */
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 2px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+        }
+        
+        .quantity-input {
+            width: 70px;
+            height: 30px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            border: 2px solid var(--medium-gray);
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .quantity-input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+        
+        .add-to-cart-btn {
+            flex: 1;               /* chiếm phần còn lại */
+            min-width: 200px;      /* tránh bị nhỏ quá */
+            padding: 12px 20px;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.3s;
+            margin-bottom: 0;      /* bỏ margin cũ */
+        }
+        
+        .add-to-cart-btn:hover {
+            background: var(--dark-red);
+        }
+        /* ============================================= */
+        
+        .social-share {
+            display: flex;
+            justify-content: flex-start; /* căn trái cho đồng bộ */
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-share span {
+            font-size: 14px;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background: white;
+            border: 1px solid var(--medium-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-red);
+            color: white;
+            border-color: var(--primary-red);
+        }
+        
+        .note {
+            font-size: 12px;
+            color: var(--dark-gray);
+            text-align: left;      /* căn trái */
+            margin-top: 15px;
+        }
+        
+        /* --- LOẠI BỎ HOÀN TOÀN Ô ĐỎ / KHUNG CHO BREADCRUMB --- */
+        .page-header {
+            margin-top: 100px;          
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+        .page-header .container {
+            background: transparent;
+            padding: 0 !important;
+        }
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            border: none;
+            font-size: 15px;
+            color: #666;
+        }
+        .breadcrumb a {
+            color: #0066c0;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        /* ------------------------------------------------ */
+
+        /* === STYLE CHO PHẦN THÔNG TIN SẢN PHẨM MỚI === */
+        .product-info-detail {
+            margin-top: 20px;
+            padding: 20px 0;
+        }
+        .info-block {
+            margin-bottom: 30px;
+        }
+        .info-block h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: black;
+            margin-bottom: 15px;
+            border-left: 4px solid #8B1E1E;
+            padding-left: 15px;
+        }
+        .info-block p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: black;
+            text-align: justify;
+        }
+        /* ============================================== */
+
+        /* === STYLE CHO ACCORDION MỚI (FAQ) === */
+        .faq-section {
+            margin: 30px 0;
+        }
+        .faq-section .hotline-banner {
+            background: #f9f9f9;
+            border: 1px dashed #8B1E1E;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        .faq-section .hotline-banner i {
+            color: #8B1E1E;
+            margin-right: 8px;
+        }
+        .faq-section .hotline-banner a {
+            color: #8B1E1E;
+            text-decoration: none;
+            border-bottom: 2px solid #8B1E1E;
+        }
+        .faq-section .hotline-banner a:hover {
+            opacity: 0.8;
+        }
+        .accordion-item {
+            margin-bottom: 10px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #f9f9f9;
+        }
+        .accordion-btn {
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #f1f1f1;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .accordion-btn:hover {
+            background-color: #e2e2e2;
+        }
+        .accordion-btn i {
+            transition: transform 0.3s;
+        }
+        .accordion-btn.active i {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: white;
+            padding: 0 20px;
+        }
+        .accordion-content-inner {
+            padding: 20px 0;
+        }
+        .accordion-content p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .accordion-content ul {
+            margin-left: 20px;
+            list-style-type: disc;
+        }
+        .accordion-content li {
+            margin-bottom: 5px;
+        }
+        /* Địa chỉ cửa hàng */
+        .store-address-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .store-city {
+            background: #fafafa;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .store-city h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #8B1E1E;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .store-address {
+            margin-bottom: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        .store-address i {
+            color: #8B1E1E;
+            width: 16px;
+            margin-top: 2px;
+        }
+        .store-address span {
+            flex: 1;
+        }
+        /* ================================= */
+
+        /* ===== SẢN PHẨM TƯƠNG TỰ ===== */
+        .similar-products {
+            margin: 40px 0 20px;
+        }
+        .similar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .similar-card {
+            background: #fff;
+            border: 1px solid var(--medium-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .similar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .similar-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #8B1E1E;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+        .similar-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        .similar-info {
+            padding: 15px 15px 20px;
+            text-align: left;
+        }
+        .similar-grape {
+            font-size: 18px;
+            font-weight: 700;
+            color: #8B1E1E;
+            margin: 0 0 5px;
+        }
+        .similar-type, .similar-producer, .similar-origin, .similar-abv {
+            font-size: 14px;
+            color: #333;
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+        .similar-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #8B1E1E;
+            margin: 10px 0 15px;
+        }
+        .similar-add-btn {
+            width: 100%;
+            padding: 12px;
+            background: #8B1E1E;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-transform: uppercase;
+        }
+        .similar-add-btn:hover {
+            background: #6b1717;
+        }
+        @media (max-width: 992px) {
+            .similar-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 576px) {
+            .similar-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Responsive: Khi màn hình nhỏ hơn 992px -> chuyển về 2 cột */
+        @media (max-width: 992px) {
+            .product-detail-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .product-image-section {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            .product-title {
+                font-size: 28px;
+            }
+
+            .product-specs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Mobile: nhỏ hơn 768px -> chuyển về 1 cột và xếp chồng action */
+        @media (max-width: 768px) {
+            .product-specs-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .product-title {
+                font-size: 24px;
+            }
+            
+            .product-price {
+                font-size: 28px;
+            }
+            
+            .product-subtitle {
+                font-size: 20px;
+            }
+
+            .spec-value {
+                margin-left: 24px;
+            }
+
+            .product-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .quantity-selector {
+                justify-content: center;
+            }
+
+            .add-to-cart-btn {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-title {
+                font-size: 22px;
+            }
+            
+            .product-price {
+                font-size: 26px;
+            }
+            
+            .add-to-cart-btn {
+                padding: 12px;
+                font-size: 16px;
+            }
+        }
+
+        /* ===== THANH PROMO TĨNH (CUỐI TRANG) ===== */
+        .promo-actions {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0 30px;
+            flex-wrap: wrap;
+        }
+        .promo-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background-color: #f8f8f8;
+            border: 2px solid #8B1E1E;
+            border-radius: 60px;
+            color: #8B1E1E;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(139,30,30,0.1);
+        }
+        .promo-item i {
+            font-size: 22px;
+        }
+        .promo-item:hover {
+            background-color: #8B1E1E;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(139,30,30,0.3);
+        }
+
+        /* ===== THANH FLOATING (HIỆN KHI CUỘN LÊN) ===== */
+        .floating-promo {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            border-top: 3px solid #8B1E1E;
+            flex-wrap: wrap;
+        }
+        .floating-promo.show {
+            transform: translateY(0);
+        }
+        .floating-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: #8B1E1E;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
+            border: 1px solid #8B1E1E;
+        }
+        .floating-item i {
+            font-size: 18px;
+        }
+        .floating-item:hover {
+            background: #6b1717;
+            transform: scale(1.02);
+        }
+        .floating-item.outline {
+            background: white;
+            color: #8B1E1E;
+        }
+        .floating-item.outline:hover {
+            background: #8B1E1E;
+            color: white;
+        }
+
+        /* Điều chỉnh khoảng cách cho footer */
+        .main-footer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation (from index.html) -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="#">
+                        <img src="https://winecellar.vn/wp-content/uploads/2023/03/Logo_WineCellar-01-1.svg" alt="WINECELLAR.vn" width="180">
+                    </a>
+                </div>
+
+                <!-- Main Navigation -->
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Rượu Vang</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-column">
+                                    <h3>Theo loại rượu</h3>
+                                    <ul>
+                                        <li><a href="product_main.html">Rượu vang đỏ</a></li>
+                                        <li><a href="product_main.html">Rượu vang trắng</a></li>
+                                        <li><a href="product_main.html">Rượu vang hồng</a></li>
+                                        <li><a href="product_main.html">Rượu vang ngọt</a></li>
+                                        <li><a href="product_main.html">Rượu vang sủi</a></li>
+                                        <li><a href="product_main.html">Rượu vang Moscato</a></li>
+                                        <li><a href="product_main.html">Rượu vang 18 độ</a></li>
+                                        <li><a href="product_main.html">Rượu vang 0 độ</a></li>
+                                        <li><a href="product_main.html">Rượu vang bịch</a></li>
+                                        <li><a href="product_main.html" class="highlight">Rượu vang cao cấp</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h3>Theo quốc gia</h3>
+                                    <ul>
+                                        <li><a href="product_main.html">Rượu vang Ý</a></li>
+                                        <li><a href="product_main.html">Rượu vang Chile</a></li>
+                                        <li><a href="product_main.html">Rượu vang Pháp</a></li>
+                                        <li><a href="product_main.html">Rượu vang Tây Ban Nha</a></li>
+                                        <li><a href="product_main.html">Rượu vang Úc</a></li>
+                                        <li><a href="product_main.html">Rượu vang Bồ Đào Nha</a></li>
+                                        <li><a href="product_main.html">Rượu vang Hungary</a></li>
+                                        <li><a href="product_main.html">Rượu vang Mỹ</a></li>
+                                        <li><a href="product_main.html">Rượu vang Argentina</a></li>
+                                        <li><a href="product_main.html">Rượu vang New Zealand</a></li>
+                                        <li><a href="product_main.html">Rượu vang Nam Phi</a></li>
+                                        <li><a href="product_main.html">Rượu vang Áo</a></li>
+                                        <li><a href="product_main.html">Rượu vang Canada</a></li>
+                                        <li><a href="product_main.html" class="highlight">Tất cả thương hiệu rượu vang</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h3>Theo vùng làm vang</h3>
+                                    <ul>
+                                        <li><a href="product_main.html">Bordeaux (Pháp)</a></li>
+                                        <li><a href="product_main.html">Languedoc (Pháp)</a></li>
+                                        <li><a href="product_main.html">Provence (Pháp)</a></li>
+                                        <li><a href="product_main.html">Puglia (Ý)</a></li>
+                                        <li><a href="product_main.html">Piedmont (Ý)</a></li>
+                                        <li><a href="product_main.html">Tuscany (Ý)</a></li>
+                                        <li><a href="product_main.html">Aconcagua Valley (Chile)</a></li>
+                                        <li><a href="product_main.html">McLaren Vale (Úc)</a></li>
+                                        <li><a href="product_main.html">Central Valley (Chile)</a></li>
+                                    </ul>
+                                    <a href="product_main.html" class="highlight">Tất cả vùng làm vang</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h3>Theo giống nho</h3>
+                                    <ul>
+                                        <li><a href="product_main.html">Cabernet Sauvignon</a></li>
+                                        <li><a href="product_main.html">Cabernet Franc</a></li>
+                                        <li><a href="product_main.html">Negroamaro</a></li>
+                                        <li><a href="product_main.html">Merlot</a></li>
+                                        <li><a href="product_main.html">Primitivo</a></li>
+                                        <li><a href="product_main.html">Syrah (Shiraz)</a></li>
+                                        <li><a href="product_main.html">Chardonnay</a></li>
+                                        <li><a href="product_main.html">Sauvignon Blanc</a></li>
+                                        <li><a href="product_main.html">Riesling</a></li>
+                                    </ul>
+                                    <a href="product_main.html" class="highlight">Tất cả giống nho</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="product_main.html" class="nav-link">Rượu Mạnh</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="lyphale.html" class="nav-link">Ly pha lê</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-column">
+                                    <h3>Các loại rượu mạnh</h3>
+                                    <ul>
+                                        <li><a href="product_main.html">Rượu Whisky</a></li>
+                                        <li><a href="product_main.html">Blended Whisky</a></li>
+                                        <li><a href="product_main.html">Single Malt Whisky</a></li>
+                                        <li><a href="product_main.html">Rượu Vodka</a></li>
+                                        <li><a href="product_main.html">Rượu Brandy</a></li>
+                                        <li><a href="product_main.html">Rượu Cognac</a></li>
+                                        <li><a href="product_main.html">Rượu Armagnac</a></li>
+                                        <li><a href="product_main.html">Rượu Rum</a></li>
+                                        <li><a href="product_main.html">Rượu Gin</a></li>
+                                        <li><a href="product_main.html">Rượu Liqueur</a></li>
+                                        <li><a href="product_main.html">Rượu Tequila</a></li>
+                                        <li><a href="product_main.html">Rượu XO</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h3>Thương hiệu nổi tiếng</h3>
+                                    <ul class="two-column">
+                                        <li><a href="product_main.html">Rượu Chivas</a></li>
+                                        <li><a href="product_main.html">Rượu Johnnie Walker</a></li>
+                                        <li><a href="product_main.html">Rượu Ballantines</a></li>
+                                        <li><a href="product_main.html">Rượu Hibiki</a></li>
+                                        <li><a href="product_main.html">Rượu Macallan</a></li>
+                                        <li><a href="product_main.html">Rượu Mortlach</a></li>
+                                        <li><a href="product_main.html">Rượu Glenfiddich</a></li>
+                                        <li><a href="product_main.html">Rượu The Glenlivet</a></li>
+                                        <li><a href="product_main.html">Rượu Singleton</a></li>
+                                        <li><a href="product_main.html">Rượu Glen Moray</a></li>
+                                        <li><a href="product_main.html">Rượu Bacardi</a></li>
+                                        <li><a href="product_main.html">Rượu Brugal</a></li>
+                                        <li><a href="product_main.html">Rượu Cachaca</a></li>
+                                        <li><a href="product_main.html">London Dry Gin</a></li>
+                                        <li><a href="product_main.html">Rượu Bols</a></li>
+                                        <li><a href="product_main.html">Rượu Bardinet</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="quatangdoanhnghiep.html" class="nav-link">Qùa tặng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="product_main.html" class="nav-link">Sản phẩm khác</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="nhasanxuat.html" class="nav-link">Nhà sản xuất</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="kienthuc.html" class="nav-link">Kiến thức</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="lienhe.html" class="nav-link">Liên hệ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="cart.html" class="nav-link highlight-text">Giỏ hàng</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header / Breadcrumb -->
+    <section class="page-header">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="#">Trang chủ</a> / <a href="#">Rượu Vang Pháp</a> / <span>Rượu Vang Bourgogne</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Product Detail Content -->
+    <div class="product-detail-wrapper">
+        <div class="product-detail-container">
+            <div class="product-image-section">
+                <div class="product-image-main">
+                    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rượu Vang Pháp Domaine Faiveley Bourgogne Pinot Noir 2023">
+                </div>
+            </div>
+            
+            <div class="product-info-section">
+                <h1 class="product-title">Rượu Vang Pháp Domaine Faiveley Bourgogne Pinot Noir 2023</h1>
+                
+                <div class="product-sku-rating">
+                    <div class="product-sku"><strong>SKU:</strong> VD/1602</div>
+                    <div class="product-rating">
+                        <div class="rating-stars">⭐️⭐️⭐️⭐️⭐️</div>
+                        <span class="rating-text">4.3/5 - (7 votes)</span>
+                    </div>
+                </div>
+                
+                <p class="product-description">
+                    Các tu sĩ của Tu viện Cîteaux, nổi tiếng với đam mê dành cho nghề trồng nho và kiến thức sâu rộng về 
+                    thổ nhưỡng, đã hồi sinh những vườn nho tại Bourgogne từ thế kỷ 11. Rượu mang sắc đỏ ruby tuyệt đẹp, lan tỏa 
+                    hương thơm dễ chịu của trái cây đỏ chín mọng. Hương vị rượu phong phú, thơm ngon, vị chát mịn màng và tròn đầy. 
+                    Đây là một dòng rượu vang có cấu trúc tốt và dễ thưởng thức.
+                </p>
+                
+                <!-- ========== THÔNG SỐ 3 CỘT – ĐẦY ĐỦ ICON ========== -->
+                <div class="product-specs-grid">
+                    <!-- GIỐNG NHO -->
+                    <div class="spec-item">
+                        <span class="spec-label">
+                            <i class="fas fa-grape"></i> GIỐNG NHO
+                        </span>
+                        <span class="spec-value">Pinot Noir</span>
+                    </div>
+                    <!-- LOẠI VANG -->
+                    <div class="spec-item">
+                        <span class="spec-label">
+                            <i class="fas fa-wine-glass-alt"></i> LOẠI VANG
+                        </span>
+                        <span class="spec-value">Rượu Vang Đỏ</span>
+                    </div>
+                    <!-- NHÀ SẢN XUẤT -->
+                    <div class="spec-item">
+                        <span class="spec-label">
+                            <i class="fas fa-building"></i> NHÀ SẢN XUẤT
+                        </span>
+                        <span class="spec-value">Domaine Faiveley</span>
+                    </div>
+                    <!-- QUỐC GIA -->
+                    <div class="spec-item">
+                        <span class="spec-label">
+                            <i class="fas fa-flag"></i> QUỐC GIA
+                        </span>
+                        <span class="spec-value">Vang Pháp</span>
+                    </div>
+                    <!-- NÔNG ĐỘ -->
+                    <div class="spec-item">
+                        <span class="spec-label">
+                            <i class="fas fa-percent"></i> NÔNG ĐỘ
+                        </span>
+                        <span class="spec-value">13% ABV*</span>
+                    </div>
+                    <!-- DUNG TÍCH -->
+                    <div class="spec-item">
+                        <span class="spec-label">
+                            <i class="fas fa-flask"></i> DUNG TÍCH
+                        </span>
+                        <span class="spec-value">750ml</span>
+                    </div>
+                </div>
+                <!-- ================================================= -->
+                
+                <div class="product-price-section">
+                    <div class="product-price">1.364.000 ₫</div>
+                    
+                    <!-- HÀNG TÁC VỤ: SỐ LƯỢNG + NÚT THÊM VÀO GIỎ -->
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="text" class="quantity-input" value="1" readonly>
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                        
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng
+                        </button>
+                    </div>
+                    <!-- ============================================= -->
+                    
+                    <div class="social-share">
+                        <span>Chia sẻ:</span>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" title="Phone">
+                                <i class="fa-solid fa-phone"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="Messenger">
+                                <i class="fab fa-facebook-messenger"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="Kakao">
+                                <i class="fas fa-comment"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="Zalo">
+                                <i><img src="zalo-icon.png" style="width: 36px; height: 36px; margin-top: 8px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== PHẦN THÔNG TIN SẢN PHẨM BỔ SUNG (ĐỘ RỘNG 1000PX) ========== -->
+    <div class="product-detail-wrapper" style="margin-top: 0; max-width: 1000px;">
+        <div class="product-info-detail">
+            <h2 class="product-subtitle">THÔNG TIN SẢN PHẨM</h2>
+            
+            <div class="info-block">
+                <h3>Domaine Faiveley – Di sản 200 năm của gia đình làm rượu danh tiếng tại Bourgogne</h3>
+                <p>Ra đời từ năm 1825, Domaine Faiveley là một trong những nhà làm vang tiêu biểu của rượu vang Bourgogne, gắn liền
+                   với bảy thế hệ làm rượu say mê và tận hiến. Tọa lạc tại Nuits-Saint-Georges – trung tâm của vùng Bourgogne, nhà 
+                   sản xuất này không chỉ nổi bật với quy mô sở hữu vườn nho rộng lớn mà còn bởi tinh thần đổi mới song hành với 
+                   truyền thống.</p> <br>
+                <p>Dưới sự điều hành của anh em Erwan và Eve Faiveley, nhà sản xuất Domaine Faiveley đang tiếp tục định hình lại 
+                   cách nhìn về rượu vang Bourgogne hiện đại: vẫn trân trọng truyền thống, nhưng không ngần ngại thử nghiệm và tiên phong.</p>
+            </div>
+            
+            <div class="info-block">
+                <h3>Thổ nhưỡng Bourgogne – nơi Pinot Noir trở thành nghệ thuật</h3>
+                <p>Bourgogne được xem là cái nôi khai sinh và nuôi dưỡng giống nho Pinot Noir suốt hàng thế kỷ. Thổ nhưỡng nơi đây 
+                   là sự tổng hòa giữa đất sét, đá vôi, marnes và sỏi, những yếu tố địa chất tạo nên sự đa dạng trong từng mảnh 
+                   vườn.</p> <br>
+                <p>Với lịch sử kéo dài từ thời Gallo-Roman, vùng đất này từng bị bỏ hoang trong một thời gian dài, cho đến khi các 
+                   tu sĩ dòng Xitô (Abbaye de Cîteaux) vào thế kỷ 11 hồi sinh lại những vườn nho bằng kiến thức am hiểu thổ nhưỡng 
+                   sâu sắc. Chính nhờ công lao đó, Bourgogne ngày nay trở thành một trong những vùng trồng nho danh giá nhất thế 
+                   giới.</p>
+            </div>
+            
+            <div class="info-block" style="margin-top: 30px;">
+                <h3>Những vườn nho được chăm sóc bằng đôi tay và tâm hồn</h3>
+                <p>Domaine Faiveley ngày nay sở hữu và quản lý khoảng 120 ha vườn nho, một con số ấn tượng với một nhà sản xuất 
+                   gia đình tại Bourgogne. Tất cả các vườn nho đều được chuyển đổi sang phương pháp hữu cơ, tôn trọng tuyệt đối 
+                   nhịp điệu của tự nhiên. Họ tin rằng: chính thiên nhiên mới là nghệ nhân thật sự của từng mùa vụ. Việc lựa chọn 
+                   giống cây, tỉa cành, chăm sóc đất, thu hoạch… đều tuân theo một nguyên tắc chung: lắng nghe và nâng đỡ tự nhiên,
+                   chứ không hề cưỡng ép.</p> <br>
+                <p>Pinot Noir dùng để sản xuất dòng Bourgogne Pinot Noir này đến từ những vườn nho do Domaine sở hữu hoặc liên kết 
+                   với những đối tác lâu năm, có chung triết lý về chất lượng. Việc lựa chọn nho đầu vào luôn được kiểm soát 
+                   nghiêm ngặt bởi đội ngũ kỹ thuật viên tại Nuits-Saint-Georges, đảm bảo sự đồng nhất về chất lượng qua từng niên 
+                   vụ.</p>   
+            </div>
+        </div>
+
+        <!-- ========== FAQ SECTION - NHỮNG CÂU HỎI THƯỜNG GẶP ========== -->
+        <div class="faq-section">
+            <div class="hotline-banner">
+                <i class="fas fa-phone-alt"></i> Liên hệ hotline <a href="tel:0946698008">094 669 8008</a> để nhận tư vấn & đặt hàng!
+            </div>
+
+            <!-- Accordion 1: Địa chỉ cửa hàng -->
+            <div class="accordion-item">
+                <button class="accordion-btn">
+                    <span><i class="fas fa-map-marker-alt"></i> Địa chỉ các cửa hàng của WINECELLAR.vn ở đâu?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <p>Cảm ơn quý khách đã quan tâm đến sản phẩm của WINECELLAR.vn.</p>
+                        <div class="store-address-list">
+                            <div class="store-city">
+                                <h4><i class="fas fa-city"></i> Hà Nội</h4>
+                                <div class="store-address"><i class="fas fa-map-pin"></i><span>78 Vũ Phạm Hàm, Phường Yên Hòa <br> 📞 098 658 7836</span></div>
+                                <div class="store-address"><i class="fas fa-map-pin"></i><span>88 Đào Tấn, Phường Giảng Võ <br> 📞 096 849 7836</span></div>
+                                <div class="store-address"><i class="fas fa-map-pin"></i><span>246 Hoàng Ngân, Phường Yên Hoà <br> 📞 090 308 2366</span></div>
+                                <div class="store-address"><i class="fas fa-map-pin"></i><span>43 Phan Chu Trinh, Phường Cửa Nam <br> 📞 098 757 7836</span></div>
+                            </div>
+                            <div class="store-city">
+                                <h4><i class="fas fa-city"></i> Đà Nẵng</h4>
+                                <div class="store-address"><i class="fas fa-map-pin"></i><span>21 Hùng Vương, Phường Hải Châu <br> 📞 093 556 7172</span></div>
+                                <div class="store-city">
+                                <h4><i class="fas fa-city"></i> Hội An</h4>
+                                <div class="store-address"><i class="fas fa-map-pin"></i><span>Số 166 Nguyễn Trường Tộ, Phường Hội An <br> 📞 096 488 7166</span></div>
+                                </div>
+                                <div class="store-city">
+                                <h4><i class="fas fa-city"></i> Nha Trang</h4>
+                                <div class="store-address"><i class="fas fa-map-pin"></i><span>Số 15 Hai Bà Trưng, Phường Nha Trang, Tỉnh Khánh Hòa <br> 📞 093 508 9768</span></div>
+                            </div>
+                            </div>
+                            <div class="store-city">
+                                <h4><i class="fas fa-city"></i> TP Hồ Chí Minh</h4>
+                                <div class="store-address"><i class="fas fa-map-pin"></i><span>188 Nguyễn Văn Thủ, Phường Tân Định <br> 📞 091 673 3416</span></div>
+                                <div class="store-address"><i class="fas fa-map-pin"></i><span>253 Nam Kỳ Khởi Nghĩa, Phường Xuân Hòa <br> 📞 091 673 3414</span></div>
+                                <div class="store-address"><i class="fas fa-map-pin"></i><span>58 Song Hành, Phường Bình Trưng <br> 📞 091 673 3415</span></div>
+                            </div>
+                            <div class="store-city">
+                                <h4><i class="fas fa-city"></i> Phú Quốc</h4>
+                                <div class="store-address"><i class="fas fa-map-pin"></i><span>217B đường 30/4, Dương Đông, Đặc khu Phú Quốc, Tỉnh An Giang <br> 📞 091 673 9311</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 2: Làm sao để chọn được chai vang phù hợp nhất? -->
+            <div class="accordion-item">
+                <button class="accordion-btn">
+                    <span><i class="fas fa-wine-glass-alt"></i> Làm sao để chọn được chai vang phù hợp nhất?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <p><strong>Để chọn được chai vang phù hợp, bạn có thể cân nhắc các yếu tố sau:</strong></p>
+                        <ul>
+                            <li><strong>Dịp sử dụng:</strong> Vang đỏ thường dùng trong bữa tối, tiệc; vang trắng dùng khai vị, hải sản; vang sủi dùng trong lễ kỷ niệm.</li>
+                            <li><strong>Sở thích cá nhân:</strong> Bạn thích vị đậm đà, chát nhẹ hay ngọt? Hãy thử các dòng Pinot Noir, Cabernet Sauvignon, Merlot...</li>
+                            <li><strong>Kết hợp món ăn:</strong> Vang đỏ hợp với thịt đỏ, vang trắng hợp với cá và hải sản, vang ngọt hợp với tráng miệng.</li>
+                            <li><strong>Ngân sách:</strong> WINECELLAR.vn có đa dạng phân khúc từ 300k đến vài triệu, phù hợp với mọi nhu cầu.</li>
+                        </ul>
+                        <p>Nếu cần tư vấn thêm, đừng ngần ngại gọi hotline <strong>094 669 8008</strong> để được hỗ trợ trực tiếp.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 3: Thời gian giao hàng trong bao lâu? -->
+            <div class="accordion-item">
+                <button class="accordion-btn">
+                    <span><i class="fas fa-truck"></i> Thời gian giao hàng trong bao lâu?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <ul>
+                            <li>Ngay sau khi tiếp nhận được yêu cầu từ quý khách, chúng tôi sẽ chuẩn bị, đóng gói sản phẩm và vận chuyển tới tận tay quý khách trong thời gian nhanh nhất có thể.</li>
+                            <li>Tại nội thành các thành phố: Hà Nội, Đà Nẵng, Hội An, HCM, Nha Trang, Phú Quốc thời gian giao hàng trong khoảng 1 - 5 giờ. Đối với các tỉnh thành khác, thời gian tối đa thường là 1 - 2 ngày.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SẢN PHẨM TƯƠNG TỰ ========== -->
+        <div class="similar-products">
+            <h2 class="product-subtitle">SẢN PHẨM TƯƠNG TỰ</h2>
+            <div class="similar-grid">
+                <!-- Card 1: Montagny “Les Cent Pièces” 2023 -->
+                <div class="similar-card">
+                    <div class="similar-badge">Organic</div>
+                    <img src="https://images.unsplash.com/photo-1554136345-3f0e4f1c3c1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chardonnay" class="similar-img">
+                    <div class="similar-info">
+                        <h3 class="similar-grape">Chardonnay</h3>
+                        <p class="similar-type">Rượu Vang Trắng</p>
+                        <p class="similar-producer">Domaine Faiveley</p>
+                        <p class="similar-origin">Vang Pháp</p>
+                        <p class="similar-abv">13% ABV</p>
+                        <div class="similar-price">1.694.000 ₫</div>
+                        <button class="similar-add-btn">THÊM VÀO GIỎ HÀNG</button>
+                    </div>
+                </div>
+                <!-- Card 2: Bourgogne Chardonnay 2022 -->
+                <div class="similar-card">
+                    <div class="similar-badge">Organic</div>
+                    <img src="https://images.unsplash.com/photo-1568213816046-0ee1c42bd559?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chardonnay" class="similar-img">
+                    <div class="similar-info">
+                        <h3 class="similar-grape">Chardonnay</h3>
+                        <p class="similar-type">Rượu Vang Trắng</p>
+                        <p class="similar-producer">Domaine Faiveley</p>
+                        <p class="similar-origin">Vang Pháp</p>
+                        <p class="similar-abv">13% ABV</p>
+                        <div class="similar-price">1.364.000 ₫</div>
+                        <button class="similar-add-btn">THÊM VÀO GIỎ HÀNG</button>
+                    </div>
+                </div>
+                <!-- Card 3: Mercury Vieilles Vignes 2023 -->
+                <div class="similar-card">
+                    <div class="similar-badge">Organic</div>
+                    <img src="https://images.unsplash.com/photo-1516596543-91e4caba7b99?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pinot Noir" class="similar-img">
+                    <div class="similar-info">
+                        <h3 class="similar-grape">Pinot Noir</h3>
+                        <p class="similar-type">Rượu Vang Đỏ</p>
+                        <p class="similar-producer">Domaine Faiveley</p>
+                        <p class="similar-origin">Vang Pháp</p>
+                        <p class="similar-abv">13% ABV</p>
+                        <div class="similar-price">1.595.000 ₫</div>
+                        <button class="similar-add-btn">THÊM VÀO GIỎ HÀNG</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== THANH PROMO TĨNH (GIỐNG HÌNH) ===== -->
+        <div class="promo-actions">
+            <a href="timcuahang.html" class="promo-item"><i class="fas fa-map-marker-alt"></i> TÌM CỬA HÀNG</a>
+            <a href="#" class="promo-item"><i class="fas fa-gift"></i> NHẬN ƯU ĐÃI</a>
+            <a href="#" class="promo-item"><i class="fas fa-briefcase"></i> QUÀ TẶNG DOANH NGHIỆP</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <div class="footer-section">
+                <h4><i class="fas fa-store"></i> WINECELLAR.VN</h4>
+                <p>Địa chỉ: 123 Nguyễn Văn Linh, Quận 7, TP.HCM</p>
+                <p>Hotline: <strong>0909 123 456</strong></p>
+                <p>Email: info@winecellar.vn</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-list"></i> Danh Mục</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Đỏ</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Trắng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Pháp</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Ý</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Chile</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Tây Ban Nha</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-user-shield"></i> Chính Sách</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách bảo mật</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách vận chuyển</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách đổi trả</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Điều khoản sử dụng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Hướng dẫn mua hàng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Câu hỏi thường gặp</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-envelope"></i> Đăng Ký Nhận Tin</h4>
+                <p>Nhận thông tin khuyến mãi và sản phẩm mới từ WINECELLAR.vn</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Email của bạn">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fas fa-credit-card"></i>
+                    <i class="fas fa-qrcode"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 WINECELLAR.vn - Chuyên Rượu Vang Nhập Khẩu Chính Hãng. All rights reserved.</p>
+            <p>Giấy phép kinh doanh số: 123456789 do Sở KH&amp;ĐT TP.HCM cấp ngày 01/01/2020</p>
+        </div>
+    </footer>
+
+    <!-- ===== THANH FLOATING (HIỆN KHI CUỘN LÊN) ===== -->
+    <div class="floating-promo" id="floatingPromo">
+        <a href="timcuahang.html" class="floating-item"><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a>
+        <a href="#" class="floating-item"><i class="fas fa-gift"></i> Nhận ưu đãi</a>
+        <a href="#" class="floating-item"><i class="fas fa-briefcase"></i> Quà doanh nghiệp</a>
+    </div>
+
+    <script>
+        // Quantity selector functionality
+        const minusBtn = document.querySelector('.quantity-btn.minus');
+        const plusBtn = document.querySelector('.quantity-btn.plus');
+        const quantityInput = document.querySelector('.quantity-input');
+        
+        if (minusBtn && plusBtn && quantityInput) {
+            minusBtn.addEventListener('click', function() {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+            
+            plusBtn.addEventListener('click', function() {
+                let currentValue = parseInt(quantityInput.value);
+                quantityInput.value = currentValue + 1;
+            });
+        }
+        
+        // Add to cart button interaction
+        const addToCartBtn = document.querySelector('.add-to-cart-btn');
+        if (addToCartBtn) {
+            addToCartBtn.addEventListener('click', function() {
+                const productName = document.querySelector('.product-title').textContent;
+                const quantity = quantityInput ? quantityInput.value : 1;
+                const originalText = this.innerHTML;
+                
+                this.innerHTML = '<i class="fas fa-check"></i> Đã thêm vào giỏ hàng';
+                this.style.background = 'var(--green)';
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.background = '';
+                }, 2000);
+                
+                console.log(`Đã thêm vào giỏ: ${productName} (Số lượng: ${quantity})`);
+            });
+        }
+
+        // Dropdown menu hover functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdowns = document.querySelectorAll('.has-dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('mouseenter', function() {
+                    const menu = this.querySelector('.dropdown-menu');
+                    if (menu) menu.style.display = 'grid';
+                });
+                
+                dropdown.addEventListener('mouseleave', function() {
+                    const menu = this.querySelector('.dropdown-menu');
+                    if (menu) menu.style.display = 'none';
+                });
+            });
+
+            // Accordion functionality for all accordion buttons
+            const accordionBtns = document.querySelectorAll('.accordion-btn');
+            
+            accordionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Toggle active class
+                    this.classList.toggle('active');
+                    
+                    // Get the content (next sibling)
+                    const content = this.nextElementSibling;
+                    
+                    // If content is open, close it; else open it
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                });
+            });
+        });
+
+        // ===== HIỆU ỨNG HIỆN/ẨN THANH FLOATING KHI CUỘN =====
+        let lastScrollTop = 0;
+        const floatingPromo = document.getElementById('floatingPromo');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop) {
+                // Cuộn xuống → ẩn thanh
+                floatingPromo.classList.remove('show');
+            } else {
+                // Cuộn lên → hiện thanh
+                floatingPromo.classList.add('show');
+            }
+            
+            // Cập nhật vị trí cuộn trước đó (không cho âm)
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Hiện thanh ngay khi tải trang nếu đang ở gần cuối (tùy chọn)
+        // Có thể thêm một lần check nhỏ
+        setTimeout(() => {
+            if (window.scrollY > 100) {
+                floatingPromo.classList.add('show');
+            }
+        }, 500);
+    </script>
+</body>
+</html>

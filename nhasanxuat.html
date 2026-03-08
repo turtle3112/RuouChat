@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhà sản xuất - WINECELLAR.vn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding-top: 77px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        :root {
+            --primary-red: #8B0000;
+            --dark-red: #5A0000;
+            --light-red: #A52A2A;
+            --gold: #D4AF37;
+            --light-gold: #F5E8AA;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #666;
+            --text-dark: #222;
+            --white: #FFFFFF;
+            --green: #2E8B57;
+            --light-bg: #FBF8EE;
+            --cream: #F2EFE2;
+            --border-color: #E8E8E8;
+            --text-light: #6C757D;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        /* ===== MAIN HEADER ===== */
+        .main-header {
+            background: var(--light-bg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: 77px;
+            width: 100%;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 77px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .main-nav {
+            flex: 1;
+            margin: 0 30px;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 28px 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-red);
+        }
+
+        .nav-link.highlight-text {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            padding: 25px;
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            min-width: 1200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        .has-dropdown:hover .dropdown-menu {
+            display: grid;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            background: var(--light-gray);
+            border-radius: 50px;
+            overflow: hidden;
+            padding: 8px 15px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 0 10px;
+            width: 180px;
+            font-size: 14px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+        }
+
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: var(--dark-gray);
+            cursor: pointer;
+        }
+
+        .icon-link {
+            color: var(--text-dark);
+            font-size: 18px;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .cart-icon .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary-red);
+            color: white;
+            font-size: 11px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== NỘI DUNG CHÍNH ===== */
+        .manufacturer-header {
+            background-color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .manufacturer-header .title {
+            font-size: 30px;
+            color: var(--primary-red);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .manufacturer-header p {
+            max-width: 900px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* ===== SLIDER THƯƠNG HIỆU NỔI BẬT ===== */
+        .featured-brands {
+            padding: 70px 0;
+            background: #ffffff;
+        }
+
+        .featured-brands .section-title {
+            text-align: center;
+            font-size: 30px;
+            color: var(--primary-red);
+            margin-bottom: 50px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .featured-brands .section-title::after {
+            content: '';
+            display: block;
+            width: 580px;
+            height: 3px;
+            background: var(--gold);
+            margin: 15px auto 0;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .slider-container {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 25px;
+            scroll-behavior: smooth;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 5px 0;
+        }
+
+        .slider-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .brand-item {
+            flex: 0 0 auto;
+            width: 220px;
+            height: 140px;
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            padding: 15px;
+        }
+
+        .brand-item:hover {
+            border-color: var(--primary-red);
+            background: white;
+            box-shadow: 0 12px 24px rgba(139,0,0,0.12);
+            transform: translateY(-5px);
+        }
+
+        .brand-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary-red);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .brand-origin {
+            font-size: 13px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .slider-prev,
+        .slider-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            color: var(--primary-red);
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .slider-prev:hover,
+        .slider-next:hover {
+            background: var(--primary-red);
+            color: white;
+            border-color: var(--primary-red);
+        }
+
+        .slider-prev {
+            left: -55px;
+        }
+
+        .slider-next {
+            right: -55px;
+        }
+
+        @media (max-width: 768px) {
+            .brand-item {
+                width: 180px;
+                height: 120px;
+            }
+            .brand-name {
+                font-size: 16px;
+            }
+            .brand-origin {
+                font-size: 11px;
+            }
+            .slider-prev {
+                left: -12px;
+            }
+            .slider-next {
+                right: -12px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .brand-item {
+                width: 160px;
+                height: 110px;
+            }
+            .slider-prev,
+            .slider-next {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+        }
+
+        /* ===== THƯƠNG HIỆU NỔI BẬT TỪ PHÁP (hai cột, bên phải là các thẻ thương hiệu) ===== */
+        .french-brands-showcase {
+            max-width: 1400px;
+            margin: 50px auto;
+            background-color: var(--light-bg);
+            border-radius: 40px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .french-brands-showcase h2 {
+            font-size: 30px;
+            color: var(--primary-red);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .showcase-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .text-column {
+            flex: 1 1 360px;
+        }
+
+        .text-column .intro-text {
+            text-align: left;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .brand-column {
+            flex: 2 1 600px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .french-brand-card {
+            background: #fff;
+            border-radius: 12px;
+            /* padding: 20px 10px; */
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            /* border: 1px solid var(--border-color); */
+            transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100px;
+        }
+
+        .french-brand-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-red);
+        }
+
+        .french-brand-card .brand-main {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary-red);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .french-brand-card .brand-sub {
+            font-size: 14px;
+            color: #8b6b4d;
+            font-style: italic;
+        }
+
+        /* responsive */
+        @media (max-width: 992px) {
+            .showcase-content {
+                flex-direction: column;
+            }
+            .brand-column {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .brand-column {
+                grid-template-columns: 1fr;
+            }
+            .french-brands-showcase {
+                padding: 30px 20px;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .main-footer {
+            background: var(--dark-red) !important;
+            color: white;
+            padding-top: 50px;
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            padding-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            opacity: 0.9;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background 0.3s;
+            margin-bottom: 0;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-red);
+        }
+
+        .newsletter {
+            display: flex;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 6px 0 0 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .newsletter button {
+            background: var(--gold);
+            color: var(--dark-red);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .newsletter button:hover {
+            background: var(--light-gold);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            font-size: 24px;
+            margin-top: 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 5px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                display: none;
+            }
+            .manufacturer-header .title {
+                font-size: 26px;
+            }
+            .featured-brands .section-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .promo-actions {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0 30px;
+            flex-wrap: wrap;
+        }
+        .promo-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background-color: #f8f8f8;
+            border: 2px solid #8B1E1E;
+            border-radius: 60px;
+            color: #8B1E1E;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(139,30,30,0.1);
+        }
+        .promo-item i {
+            font-size: 22px;
+        }
+        .promo-item:hover {
+            background-color: #8B1E1E;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(139,30,30,0.3);
+        }
+
+        /* ===== THANH FLOATING (HIỆN KHI CUỘN LÊN) ===== */
+        .floating-promo {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            border-top: 3px solid #8B1E1E;
+            flex-wrap: wrap;
+        }
+        .floating-promo.show {
+            transform: translateY(0);
+        }
+        .floating-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: #8B1E1E;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
+            border: 1px solid #8B1E1E;
+        }
+        .floating-item i {
+            font-size: 18px;
+        }
+        .floating-item:hover {
+            background: #6b1717;
+            transform: scale(1.02);
+        }
+        .floating-item.outline {
+            background: white;
+            color: #8B1E1E;
+        }
+        .floating-item.outline:hover {
+            background: #8B1E1E;
+            color: white;
+        }
+        .main-footer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="#">
+                        <img src="https://winecellar.vn/wp-content/uploads/2023/03/Logo_WineCellar-01-1.svg" alt="WINECELLAR.vn" width="180">
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item has-dropdown"><a href="#" class="nav-link">Rượu Vang</a></li>
+                        <li class="nav-item has-dropdown"><a href="#" class="nav-link">Rượu Champagne</a></li>
+                        <li class="nav-item has-dropdown"><a href="#" class="nav-link">Rượu mạnh</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">🧧 Rượu Tết</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">🎁 Quà Tết 2026</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Phụ Kiện Rượu</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Kiến thức</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Liên hệ</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link highlight-text">⚡Khuyến mãi</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Tìm kiếm...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <a href="#" class="icon-link"><i class="far fa-user"></i></a>
+                    <a href="#" class="icon-link cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nội dung chính: DANH SÁCH NHÀ SẢN XUẤT -->
+    <section class="manufacturer-header">
+        <div class="container">
+            <p class="title">DANH SÁCH NHÀ SẢN XUẤT</p>
+            <p>
+                Danh mục sản phẩm tại WINECELLAR.vn không ngừng được mở rộng, quy tụ những thương hiệu cao cấp trong thế giới rượu vang, bia thầy tu, whisky hào hạng cùng các phụ kiện và sản phẩm ẩm thực tinh tế.
+                <br><br>
+                Từ rượu vang đẳng cấp, ly pha lê Riedel danh tiếng, dụng cụ chiết rượu Coravin hiện đại, đến thịt heo muối Iberico thượng hạng, nước khoáng thiên nhiên tinh khiết và những dòng bánh quy hào hạng từ Bỉ, Đan Mạch hay trà Anh Quốc truyền thống... tất cả đều được tuyển chọn để nâng tầm trải nghiệm thưởng thức của bạn.
+            </p>
+        </div>
+    </section>
+
+    <!-- Slider thương hiệu nổi bật (dạng trượt ngang) -->
+    <section class="featured-brands">
+        <div class="container">
+            <h2 class="section-title">THƯƠNG HIỆU NỔI BẬT</h2>
+            <div class="slider-wrapper">
+                <button class="slider-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-container">
+                    <div class="slider-track">
+                        <!-- Các brand -->
+                        <div class="brand-item">
+                            <div class="brand-name">
+                                <img src="12.jpg" style="width: 220px; height: 139px; margin-top: 12px; border-radius: 12px;">
+                            </div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-name">GREYWACKE</div>
+                            <div class="brand-origin">Καύμα - Δελφίδα</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-name">DR. LOOSEN</div>
+                            <div class="brand-origin">Mosel - Germany</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-name">CHÂTEAU DAUZAC</div>
+                            <div class="brand-origin">Margaux, Grand Cru Classé</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-name">FRESCOBALDI</div>
+                            <div class="brand-origin">Toscana - Italy</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-name">CHARLES HEIDSIECK</div>
+                            <div class="brand-origin">Reims - France, est. 1851</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-name">EL ENEMIGO</div>
+                            <div class="brand-origin">Mendoza - Argentina</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-name">GREYWACKE</div>
+                            <div class="brand-origin">Καύμα - Δελφίδα</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-name">DR. LOOSEN</div>
+                            <div class="brand-origin">Mosel - Germany</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== THƯƠNG HIỆU NỔI BẬT TỪ PHÁP (đúng layout ảnh) ===== -->
+    <div class="french-brands-showcase">
+        <div class="container" style="padding: 0;">
+            <h2>CÁC THƯƠNG HIỆU NỔI BẬT TỪ PHÁP</h2>
+            <div class="showcase-content">
+                <div class="text-column">
+                    <p class="intro-text">
+                        Những nhà sản xuất tên tuổi này đã góp phần khẳng định vị thế vững chắc của rượu vang Pháp trên bản đồ thế giới. 
+                        Từ những dòng vang đậm đà, cổ điển của Bordeaux đến những chai vang tinh tế, thanh lịch của Bourgogne, hay nét ấm 
+                        áp, đầy nắng gió của Rhône Valley... mỗi vùng vang Pháp đều mang một cá tính riêng, phản ánh chiều sâu văn hóa và 
+                        nghệ thuật làm vang trứ danh của đất nước này.
+                    </p>
+                </div>
+                <div class="brand-column">
+                    <!-- Thương hiệu 1 -->
+                    <div class="french-brand-card">
+                        <img src="12.jpg" style="width: 180px; height: 120px; border-radius: 12px;">
+                    </div>
+                    <!-- Thương hiệu 2 -->
+                    <div class="french-brand-card">
+                        <img src="12.jpg" style="width: 180px; height: 120px; border-radius: 12px;">
+                    </div>
+                    <!-- Thương hiệu 3 -->
+                    <div class="french-brand-card">
+                        <img src="12.jpg" style="width: 180px; height: 120px; border-radius: 12px;">
+                    </div>
+                    <!-- Thương hiệu 4 -->
+                    <div class="french-brand-card">
+                        <img src="12.jpg" style="width: 180px; height: 120px; border-radius: 12px;">
+                    </div>
+
+                    <div class="french-brand-card">
+                        <img src="12.jpg" style="width: 180px; height: 120px; border-radius: 12px;">
+                    </div>
+
+                    <div class="french-brand-card">
+                        <img src="12.jpg" style="width: 180px; height: 120px; border-radius: 12px;">
+                    </div>
+
+                    <div class="french-brand-card">
+                        <img src="12.jpg" style="width: 180px; height: 120px; border-radius: 12px;">
+                    </div>
+
+                    <div class="french-brand-card">
+                        <img src="12.jpg" style="width: 180px; height: 120px; border-radius: 12px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thêm class open-offer-modal cho các nút nhận ưu đãi -->
+    <div class="promo-actions">
+        <a href="#" class="promo-item"><i class="fas fa-map-marker-alt"></i> TÌM CỬA HÀNG</a>
+        <a href="#" class="promo-item open-offer-modal"><i class="fas fa-gift"></i> NHẬN ƯU ĐÃI</a>
+        <a href="#" class="promo-item"><i class="fas fa-briefcase"></i> QUÀ TẶNG DOANH NGHIỆP</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <div class="footer-section">
+                <h4><i class="fas fa-store"></i> WINECELLAR.VN</h4>
+                <p>Địa chỉ: 123 Nguyễn Văn Linh, Quận 7, TP.HCM</p>
+                <p>Hotline: <strong>0909 123 456</strong></p>
+                <p>Email: info@winecellar.vn</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-list"></i> Danh Mục</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Đỏ</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Trắng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Pháp</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Ý</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Chile</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Rượu Vang Tây Ban Nha</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-user-shield"></i> Chính Sách</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách bảo mật</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách vận chuyển</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Chính sách đổi trả</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Điều khoản sử dụng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Hướng dẫn mua hàng</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Câu hỏi thường gặp</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-envelope"></i> Đăng Ký Nhận Tin</h4>
+                <p>Nhận thông tin khuyến mãi và sản phẩm mới từ WINECELLAR.vn</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Email của bạn">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fas fa-credit-card"></i>
+                    <i class="fas fa-qrcode"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 WINECELLAR.vn - Chuyên Rượu Vang Nhập Khẩu Chính Hãng. All rights reserved.</p>
+            <p>Giấy phép kinh doanh số: 123456789 do Sở KH&amp;ĐT TP.HCM cấp ngày 01/01/2020</p>
+        </div>
+    </footer>
+
+    <!-- ===== THANH FLOATING (HIỆN KHI CUỘN LÊN) ===== -->
+    <div class="floating-promo" id="floatingPromo">
+        <a href="#" class="floating-item"><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a>
+        <a href="#" class="floating-item open-offer-modal"><i class="fas fa-gift"></i> Nhận ưu đãi</a>
+        <a href="#" class="floating-item"><i class="fas fa-briefcase"></i> Quà doanh nghiệp</a>
+    </div>
+
+    <!-- JavaScript cho slider -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.slider-track');
+            const prevBtn = document.querySelector('.slider-prev');
+            const nextBtn = document.querySelector('.slider-next');
+
+            const item = document.querySelector('.brand-item');
+            if (!item) return;
+
+            const itemWidth = item.offsetWidth;
+            const gap = 25;
+            const scrollAmount = itemWidth + gap;
+
+            prevBtn.addEventListener('click', () => {
+                track.scrollLeft -= scrollAmount;
+            });
+
+            nextBtn.addEventListener('click', () => {
+                track.scrollLeft += scrollAmount;
+            });
+
+            // ===== HIỆU ỨNG HIỆN/ẨN THANH FLOATING KHI CUỘN =====
+            let lastScrollTop = 0;
+            const floatingPromo = document.getElementById('floatingPromo');
+            
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop) {
+                    floatingPromo.classList.remove('show');
+                } else {
+                    floatingPromo.classList.add('show');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+
+            setTimeout(() => {
+                if (window.scrollY > 100) {
+                    floatingPromo.classList.add('show');
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
